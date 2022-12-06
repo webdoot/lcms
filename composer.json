@@ -3,19 +3,22 @@
     "description": "Laravel Content Management System (LCMS)",
     "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Webdoot\\Lcms\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "WEBDOOT",
             "email": "webdoot.com@gmail.com"
         }
     ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.75"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webdoot\\Lcms\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
-    "require": {},
     "extra": {
         "laravel": {
             "providers": [
