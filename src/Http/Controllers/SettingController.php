@@ -16,6 +16,7 @@ class SettingController extends Controller
 {
     public function index()
     {
+        // dd(config('lcms.app_ver'));
         return view('lcms::setting.index');
     }
     

@@ -34,7 +34,8 @@ class LcmsServiceProvider extends ServiceProvider
 
 	public function register()
 	{
-		
+		// Call: config('lcms.app_ver');
+		$this->mergeConfigFrom( __DIR__.'/../config/lcms.php', 'lcms' );
 	}
 	
 
