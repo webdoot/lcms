@@ -12,23 +12,16 @@ namespace Webdoot\Lcms\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class SettingController extends Controller
 {
- 	public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
-    }
-
-    
-    public function dashboard()
-    {
-        return view('lcms::dashboard.index');
+        return view('lcms::setting.index');
     }
     
-
-    // Redirect on /dashboard
-    public function dashboardRedirect()
-    { 
-        return redirect()->route('lcms_dashboard');
+    public function update(Request $req)
+    {
+        dd($req->all());
     }
+
 }

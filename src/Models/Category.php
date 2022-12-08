@@ -11,14 +11,20 @@ namespace Webdoot\Lcms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Webdoot\Lcms\Models\SubCategory;
 
-class Usermeta extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = 'lcms_usermetas';
+    protected $table = 'lcms_categories';
 
     public $timestamps = false;
 
-    protected $fillable = [ 'role' ];
+    protected $fillable = [ 'name', 'description' ];
+
+    public function subCategories()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
 }

@@ -12,13 +12,13 @@ namespace Webdoot\Lcms\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usermeta extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $table = 'lcms_usermetas';
+    protected $table = 'lcms_tags';
 
     public $timestamps = false;
 
-    protected $fillable = [ 'role' ];
+    protected $fillable = [  ];
 }

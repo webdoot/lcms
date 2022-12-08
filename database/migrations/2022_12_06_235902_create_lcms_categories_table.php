@@ -12,7 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateLcmsUsermetasTable extends Migration
+class CreateLcmsCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,11 +21,20 @@ class CreateLcmsUsermetasTable extends Migration
      */
     public function up()
     {
-        Schema::create('lcms_usermetas', function (Blueprint $table) {
+        Schema::create('lcms_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('role', 50);  // master|admin|staff
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();            
         });
+
+        // seeding
+        echo 'seeding category...', PHP_EOL;
+        DB::table('lcms_categories')->insert([   
+            [         
+                'name'        => 'Uncategorised'       ,
+                'description' => 'Not in any category' , 
+            ], 
+        ]);
     }
 
     /**
@@ -35,6 +44,6 @@ class CreateLcmsUsermetasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lcms_usermetas');
+        Schema::dropIfExists('lcms_categories');
     }
 }

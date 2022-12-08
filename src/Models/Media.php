@@ -11,14 +11,18 @@ namespace Webdoot\Lcms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
-class Usermeta extends Model
+class Media extends Model
 {
     use HasFactory;
 
-    protected $table = 'lcms_usermetas';
+    protected $table = 'lcms_media';
 
-    public $timestamps = false;
+    protected $fillable = [ 'user_id', 'url', 'alt', 'width', 'height', 'description' ];
 
-    protected $fillable = [ 'role' ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
