@@ -42,19 +42,19 @@
                     <a href="{{ route('lcms_media.index') }}" class="nav-link {{ (Route::is('lcms_media.index')) ? 'active' : '' }}"> <i class="icon-images3"></i> <span>Media</span> </a>
                 </li>  
 
+                {{--Article--}}  
+                <li class="nav-item">
+                    <a href="{{ route('lcms_article.index') }}" class="nav-link {{ (Route::is('lcms_article.index')) ? 'active' : '' }}"> <i class="icon-file-text2"></i> <span>Article</span> </a>
+                </li> 
+
                 {{--Menu--}}  
                 <li class="nav-item">
                     <a href="{{ route('lcms_menu.index') }}" class="nav-link {{ (Route::is('lcms_menu.index')) ? 'active' : '' }}"> <i class="icon-grid"></i> <span>Menu</span> </a>
-                </li> 
+                </li>  
 
                 {{--Post--}}  
                 <li class="nav-item">
                     <a href="{{ route('lcms_post.index') }}" class="nav-link {{ (Route::is('lcms_post.index')) ? 'active' : '' }}"> <i class="icon-stack2"></i> <span>Post</span> </a>
-                </li>  
-
-                {{--Article--}}  
-                <li class="nav-item">
-                    <a href="{{ route('lcms_article.index') }}" class="nav-link {{ (Route::is('lcms_article.index')) ? 'active' : '' }}"> <i class="icon-file-text2"></i> <span>Article</span> </a>
                 </li>
 
                 {{--Setting--}}  

@@ -23,7 +23,10 @@
         "laravel": {
             "providers": [
                 "Webdoot\\Lcms\\LcmsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Setting": "Webdoot\\Lcms\\Models\\Setting"
+            }
         }
     },
 }
