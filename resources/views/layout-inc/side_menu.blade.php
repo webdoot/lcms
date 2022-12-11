@@ -59,7 +59,7 @@
 
                 {{--Setting--}}  
                 <li class="nav-item">
-                    <a href="{{ route('lcms_setting.index') }}" class="nav-link {{ (Route::is('lcms_setting.index')) ? 'active' : '' }}"> <i class="icon-cog"></i> <span>Setting</span> </a>
+                    <a href="{{ route('lcms_setting.index') }}" class="nav-link {{ (Route::is('lcms_setting.index')) ? 'active' : '' }}"> <i class="icon-cog"></i> <span>Settings</span> </a>
                 </li> 
 
 

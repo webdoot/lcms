@@ -20,7 +20,7 @@
     {{--   Core JS files --}}
     <script src="{{ asset('vendor/lcms/js/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/lcms/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/plugins/ui/prism.min.js') }}"></script>    
+    <script src="{{ asset('vendor/lcms/js/datatables.min.js') }}"></script>    
 
     @stack('head')
 
@@ -62,7 +62,32 @@
         .sidebar {
           width: 16rem;
         }
-        
+
+        /* Data tables */
+        .datatable-footer > div:first-child, .datatable-header > div:first-child {
+          margin-left: 1.25rem;
+        }
+
+        .datatable-header {
+            padding-bottom: 1.2rem;
+        }
+
+        .dataTables_filter > label {
+          position: relative;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+          align-items: center;
+        }
+
+        .form-control-feedback {
+          position: relative;
+          padding-right: 0;
+        }
+
+        .dataTables_filter input {
+            width: 17rem;
+        }        
     </style>
 
 </head>
@@ -124,15 +149,11 @@
 
 
     {{-- Notification --}}
-    <script src="{{ asset('vendor/lcms/js/plugins/notifications/sweet_alert2.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/plugins/notifications/pnotify.min.js') }}"></script>
-
-    <script src="{{ asset('vendor/lcms/js/app.js') }}"></script>
-    
+    <script src="{{ asset('vendor/lcms/js/sweet_alert2.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/pnotify.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/app.js') }}"></script>    
     <script src=" {{ asset('vendor/lcms/js/custom.js') }} "></script>
-
     @include('lcms::layout-inc.js.custom_js') 
-
     @stack('footer')
 
 </body>

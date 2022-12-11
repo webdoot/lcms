@@ -1,0 +1,17 @@
+Available Commands
+------------------
+
+View Functions
+--------------
+Lcms::get("---");
+Lcms::setting("title")
+Lcms::setting("sub_title")
+Lcms::setting("logo")
+Lcms::setting("logo_2")
+Lcms::setting("favicon")
+
+
+Controller Function
+-------------------
+Lcms::get("A---")
+
