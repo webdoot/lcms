@@ -22,12 +22,14 @@ class CreateLcmsMediaTable extends Migration
     {
         Schema::create('lcms_media', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->string('name')->nullable();
             $table->string('url')->nullable();
             $table->string('alt')->nullable();
-            $table->string('width')->nullable();
-            $table->string('height')->nullable();
-            $table->string('description')->nullable();
+            $table->string('width', 50)->nullable();
+            $table->string('height', 50)->nullable();
+            $table->string('ext', 50)->nullable();     // Extension: jpg, mp4, pdf, doc
+            $table->string('description')->nullable();  // short description
+            $table->string('user_id')->nullable();      // Owners user_id
 
             $table->timestamps();
         });

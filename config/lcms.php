@@ -24,4 +24,31 @@ return [
 
     'app_home'   => 'https://webdoot.com/lcms',
 
+    // Storage folder name in public direcory
+    'storage'   => 'lcms_uploads',
+
+    // User details
+    'users'      => [
+                        [
+                            'user_id' => 1 ,
+                            'name'    => 'Vikra Sh.' ,
+                            'role'    => 'admin' ,
+                        ], 
+
+                        [
+                            'user_id' => 2 ,
+                            'name'    => 'Anil Kumar' ,
+                            'role'    => 'member' ,
+                        ],
+
+                    ],
+
+    // File details
+    'media_types' => [
+                        'photo' =>  ['jpg', 'jpeg', 'png', 'gif'], 
+                        'video' =>  ['mp4', 'mpeg'], 
+                        'pdf'   =>  ['pdf'], 
+                        'doc'   =>  ['doc', 'docx', 'xls'], 
+                    ],
+
 ];

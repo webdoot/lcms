@@ -1,53 +1,55 @@
-<div class="navbar navbar-expand-md navbar-dark navbar-static">
+<!-- Main navbar -->
+<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
     {{-- Mobile View --}}
-    <div class="d-flex flex-1 d-md-none">
-        <button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
-            <i class="icon-paragraph-justify3"></i>
-        </button>
-        @hasSection('sidebar_sec')
-        <button type="button" class="navbar-toggler sidebar-mobile-secondary-toggle">
-            <i class="icon-loop"></i>
-        </button>
-        @endif
-    </div>
-
-    {{-- Logo --}}
-    <div class="navbar-brand text-center text-md-left">
-        <a href="{{ route('lcms_dashboard') }}" class="d-inline-block text-muted">
-            <!-- <h3>LCMS</h3> -->
-            <img src="{{ asset('vendor/lcms/logo-bg.png') }}" alt="">
-        </a>
-    </div>
-    
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a href="#" class="navbar-nav-link sidebar-control sidebar-control sidebar-main-resize d-none d-md-block">
+    <div class="container-fluid">
+        <div class="d-flex d-lg-none">
+            <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded">
+                <i class="icon-paragraph-justify3"></i>
+            </button>
+            
+            @hasSection('sidebar_sec')
+            <button type="button" class="navbar-toggler sidebar-mobile-secondary-toggle rounded">
                 <i class="icon-loop"></i>
-            </a>
-        </li>
-    </ul>
+            </button>
+            @endif
+        </div>
 
-    <div class="navbar-collapse order-2 order-md-1">
-        <span class="navbar-text font-weight-semibold text-muted ml-md-3 mr-md-auto">Admin Panel</span>        
+        {{-- Logo --}}
+        <div class="navbar-brand">
+            <a href="{{route('lcms_dashboard')}}" class="d-inline-flex align-items-center">
+                <img src="{{asset('vendor/lcms/logo-bg.png')}}" alt="">
+            </a>
+        </div>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="#" class="navbar-nav-link sidebar-control sidebar-control sidebar-main-resize d-none d-lg-block">
+                    <i class="icon-paragraph-justify3"></i>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="nav gap-sm-2 order-1 order-lg-2 ms-lg-auto">
+            <li class="nav-item nav-item-dropdown-lg dropdown">
+                <a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="status-indicator-container">
+                        <img src="{{asset('assets/images/user.png')}}" class="w-32px h-32px rounded" alt="">
+                        <span class="status-indicator bg-success"></span>
+                    </div>
+                    <span class="d-none d-lg-inline-block mx-lg-2">{{Auth::user()->name}}</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a href="#" class="dropdown-item"> My profile</a>
+                    <a href="#" class="dropdown-item"> Another action</a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+      document.getElementById('logout-form').submit();" class="dropdown-item"> Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
     </div>
-
-    <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-        <li class="nav-item nav-item-dropdown-md dropdown dropdown-user h-100">
-            <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
-                <img src="{{ asset('assets/images/user.png') }}" class="rounded-pill mr-md-2" width="34" height="34" alt="">
-                <span class="d-none d-md-inline-block">{{ Auth::user()->name }}</span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item"><i class="icon-lock"></i> Change Password</a>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-      document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </li>
-    </ul>
 </div>
+<!-- /main navbar -->

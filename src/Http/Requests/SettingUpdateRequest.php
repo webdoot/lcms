@@ -10,8 +10,9 @@
 namespace Webdoot\Lcms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Webdoot\Lcms\Lcms;
 
-class SettingUpdate extends FormRequest
+class SettingUpdateRequest extends FormRequest
 {
     public function authorize()
     {
@@ -21,26 +22,14 @@ class SettingUpdate extends FormRequest
 
     public function rules()
     {
-        $site =  [
+        return [
             'site_title'        => 'required|string',
             'site_sub_title'    => 'nullable|string',
             'site_logo'         => 'required|string',
-            'site_logo_2'       => 'nullable|string',
+            'site_logo2'        => 'nullable|string',
             'site_favicon'      => 'required|string',
+            'action'            => 'required|in:site',
         ];
-
-        // $bank =  [
-        //     'org_bank_account_name'   => 'sometimes|nullable|string|min:6|max:150',
-        //     'org_bank_account_number' => 'sometimes|nullable|alpha_num|min:6|max:50',
-        //     'org_bank_branch'         => 'sometimes|nullable|string|min:6|max:150',
-        //     'org_bank_ifsc_code'      => 'sometimes|nullable|alpha_num|min:6|max:50',
-        //     'org_bank_swift_code'     => 'sometimes|nullable|alpha_num|min:6|max:50',
-        //     'org_bank_name'           => 'sometimes|nullable|string|min:6|max:150',
-        // ];
-
-       switch ($this->action) {
-            case 'site' :  return $site ;  break;
-        };
     }
 
     public function attributes()

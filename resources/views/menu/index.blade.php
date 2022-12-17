@@ -7,8 +7,8 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header header-elements-inline">
-        <h6 class="card-title font-weight-semibold "> Menu </h6>
+    <div class="card-header">
+        <h5 class="mb-0"> Menu </h5>
     </div>
 
     <div class="card-body">

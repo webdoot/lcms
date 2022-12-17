@@ -2,59 +2,65 @@
 @section('page_title', 'Article')
 
 @push('head')
+<style type="text/css">
+
+	
+
+</style>
 @endpush
 
 @section('content')
 
 <div class="card">
-    <div class="card-header header-elements-inline">
-        <h6 class="card-title font-weight-semibold "> List </h6>
+    <div class="card-header d-flex align-items-center">
+        <h5 class="mb-0">List</h5>
+        @if(Lcms::isAdmin())
+        <a class="btn btn-sm btn-outline-primary d-inline-flex ms-auto" href="{{route('lcms_article.create')}}"> <i class="icon-plus2 me-2"></i> Add </a>
+        @endif
     </div>
 
-    <div class="card-body">        
-    	<table class="table datatable">
+    <div class="table-responsive mb-3">
+		<table class="table datatable">
 			<thead>
 				<tr>
 					<th width="80">#</th>
-					<th>Title</th>
+					<th width="25%">Title</th>
 					<th>Content</th>
 					<th>Images</th>
-					<th width="150" class="text-center">Status Code</th>
+					<th>Status Code</th>
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($articles as $a)
 				<tr>
-					<td>1</td>
-					<td>Enright</td>
-					<td>Traffic Court Referee</td>
-					<td>22 Jun 1972</td>
-					<td class="text-center"> Action </td>
+					<td>{{$loop->iteration}}</td>
+					<td>						
+						<span class="fw-semibold d-block">{{$a->title_dsp}}</span>
+						<span class="fst-italic text-muted d-block">{{$a->sub_title}}</span>
+						<span class="fst-italic text-muted d-block">{{$a->label}}</span>
+					</td>
+					<td>
+						<span class="d-block">{{$a->content_dsp}}</span>
+						<span class="fst-italic text-muted d-block">{{$a->sub_content_dsp}}</span>
+					</td>
+					<td>
+						@foreach($a->images as $img)
+						<img src="{{$img}}" class="img-thumbnail" width="30">
+						@endforeach
+					</td>
+					<td class="d-flex"> 
+						{{--EDIT--}}                        
+                        <a href="{{ route('lcms_article.edit', $a->id) }}" class="btn btn-icon btn-outline-success d-inline-flex me-2"><i class="icon-pencil"></i> </a>
+
+                        {{--DELETE--}} 
+                        <a id="{{ $a->id }}" onclick="confirmDelete(this.id)" href="#" class="btn btn-icon btn-outline-danger d-inline-flex"><i class="icon-trash"></i> </a>
+                        <form method="post" id="item-delete-{{ $a->id }}" action="{{ route('lcms_article.destroy', $a->id) }}" class="hidden">@csrf @method('delete')</form>                       
+					</td>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>Enright</td>
-					<td>Traffic Court Referee</td>
-					<td>22 Jun 1972</td>
-					<td class="text-center"> Action </td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Enright</td>
-					<td>Traffic Court Referee</td>
-					<td>22 Jun 1972</td>
-					<td class="text-center"> Action </td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Enright</td>
-					<td>Traffic Court Referee</td>
-					<td>22 Jun 1972</td>
-					<td class="text-center"> Action </td>
-				</tr>								
+				@endforeach								
 			</tbody>
 		</table>
 	</div>
-
 </div>
 
 @endsection
@@ -63,4 +69,9 @@
 @endsection
 
 @push('footer')
+<script>
+	// Data table
+	$('.datatable').DataTable();
+
+</script>
 @endpush

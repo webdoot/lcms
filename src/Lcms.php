@@ -5,11 +5,14 @@
  | LARVEL CONTENT MANAGEMENT SYSTEM (LCMS)
  | WEBDOOT SOFTWARE DEVELOPEMT 
  |---------------------------------------------------
+ | Aliase class visible in blade file
  */
 
 namespace Webdoot\Lcms;
 
+use Illuminate\Support\Facades\Auth;
 use Webdoot\Lcms\Models\Setting;
+use Illuminate\Support\Arr;
 
 class Lcms
 {
@@ -27,6 +30,58 @@ class Lcms
     		return Setting::get($code) ;
     	}
     	
+    }
+
+    public static function role($role)
+    {
+        // $user_id ? User::find($user_id)->user_type : Auth::user()->user_type ;
+
+        $role = 'admin';
+        return true;
+    }
+
+    // Return role of logged in user
+    public static function isAdmin()
+    {
+        $id = Auth::id();
+
+        // Lcms users
+        $users = config('lcms.users');
+        $userid_role = array_column($users, 'role', 'user_id');
+
+        // Find role listed for current user 
+        $role = array_key_exists($id, $userid_role) ? $userid_role[$id] : '' ;
+
+        return ($role=='admin') ? true : false ;
+    }
+
+    // Return user information by id
+    public static function user(int $id)
+    {        
+        $users = config('lcms.users');
+        if (count($users)) {
+           foreach ($users as $user) {
+               if ($user['user_id'] == $id) {
+                   return $user;
+               }
+           }    
+        }
+
+        return [];
+    }
+
+    // Return file type
+    public static function mediaType($ext)
+    {
+        $media_types = config('lcms.media_types');
+        if (count($media_types)) {
+           foreach ($media_types as $key => $type) {
+               if (in_array($ext, $type)) {
+                   return $key;
+               }
+           }    
+        }
+        return '';        
     }
 
 }

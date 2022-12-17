@@ -23,21 +23,22 @@ class CreateLcmsArticlesTable extends Migration
     {
         Schema::create('lcms_articles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('sub_category_id');
             $table->string('title')->nullable();
-            $table->string('title_2')->nullable();
-            $table->string('title_3')->nullable();
-            $table->string('content')->nullable();
-            $table->string('content_2')->nullable();
-            $table->text('images')->nullable();      // array
-            $table->text('metas')->nullable();       // array
-            $table->string('type', 50)->nullable();     // article|post|menu|slider|form
-            $table->string('status', 50)->nullable();   // published|draft
+            $table->string('sub_title')->nullable();
+            $table->string('label')->nullable();
+            $table->text('content')->nullable();
+            $table->text('sub_content')->nullable();
+            $table->text('images')->nullable();       // array
+            $table->text('metas')->nullable();        // array
+            $table->string('type', 50)->nullable();   // article|post|menu|slider|form
+            $table->string('status', 50)->nullable(); // published|draft
+            $table->string('owner')->nullable();        // {"user_id":1, "name":"Vikram", "role":"admin"}
             $table->dateTime('published_at')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('lcms_categories');
         });
     }
 

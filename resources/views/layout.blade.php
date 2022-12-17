@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,149 +11,97 @@
 
     <link rel="icon" href="{{ asset('vendor/lcms/favicon.png') }}">
 
-    {{-- Global stylesheets --}}
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/lcms/css/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vendor/lcms/css/all.min.css')}}" rel="stylesheet" type="text/css">
-
-    {{--   Core JS files --}}
+    <!-- Global stylesheets -->
+    <link href="{{asset('vendor/lcms/fonts/inter/inter.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('vendor/lcms/css/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/lcms/css/all.min.css')}}" id="stylesheet" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/lcms/css/lcms.css')}}" id="stylesheet" rel="stylesheet" type="text/css">
+    <!-- Core JS files -->    
     <script src="{{ asset('vendor/lcms/js/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/lcms/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/datatables.min.js') }}"></script>    
+    <script src="{{ asset('vendor/lcms/js/noty.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/ckeditor_classic.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/select2.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/dropzone.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/fileinput/fileinput.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/fileinput/sortable.min.js') }}"></script>
+    <script src="{{ asset('vendor/lcms/js/glightbox.min.js') }}"></script>
+    
+    <!-- Theme JS files -->
+    <script src="{{ asset('vendor/lcms/js/app.js') }}"></script>
+    <!-- <script src="{{ asset('vendor/lcms/js/content_cards_content.js') }}"></script> -->
+    <script src="{{ asset('vendor/lcms/js/lcms.js') }}"></script>
+
+    @include('lcms::layout-inc.custom_css') 
 
     @stack('head')
-
-    <style type="text/css">
-        .msg-unread {
-            padding: 5px;
-            line-height: 1.2;
-            margin-top: 5px;
-        }
-
-        .msg-unread:hover {
-            background-color: #f2f2f2;
-        }
-
-        .msg-unread a {
-            display: contents;
-        }
-
-        [data-action="back"]::after {
-          content: '\ee40';
-        }
-
-        .navbar-brand{
-            padding-top: 8px;
-            padding-bottom: 0;
-        }
-
-        .navbar-brand img {
-          height: 26px;
-          margin-top: 6px;
-        }
-
-        @media (min-width: 768px) {
-            .navbar-expand-md .navbar-brand {
-              min-width: 11.2rem;
-            }
-        }
-
-        .sidebar {
-          width: 16rem;
-        }
-
-        /* Data tables */
-        .datatable-footer > div:first-child, .datatable-header > div:first-child {
-          margin-left: 1.25rem;
-        }
-
-        .datatable-header {
-            padding-bottom: 1.2rem;
-        }
-
-        .dataTables_filter > label {
-          position: relative;
-          display: -ms-flexbox;
-          display: flex;
-          -ms-flex-align: center;
-          align-items: center;
-        }
-
-        .form-control-feedback {
-          position: relative;
-          padding-right: 0;
-        }
-
-        .dataTables_filter input {
-            width: 17rem;
-        }        
-    </style>
-
+    
 </head>
 
 <body>
 
-    @include('lcms::layout-inc.top_menu')
+@include('lcms::layout-inc.top_menu')
 
-    <!-- Page content -->
-    <div class="page-content">
+<!-- Page content -->
+<div class="page-content">
 
-        @include('lcms::layout-inc.side_menu')   
+    @include('lcms::layout-inc.side_menu')
 
-        @yield('sidebar_sec')
+    @yield('sidebar_sec')
 
-        <!-- Main content -->
-        <div class="content-wrapper">
+    <!-- Main content -->
+    <div class="content-wrapper">
 
-            <!-- Inner content -->
-            <div class="content-inner">
+        <!-- Inner content -->
+        <div class="content-inner">
 
-                @include('lcms::layout-inc.header')
+            @include('lcms::layout-inc.header')
 
-                <!-- Content area -->
-                <div class="content">
+            <!-- Content area -->
+            <div class="content">
 
-                    <!-- Info & alert -->
-                    {{--Error Alert Area--}}
-                    @if($errors->any())
-                        <div class="alert alert-danger border-0 alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <!-- Info & alert -->
+                {{--Error Alert Area--}}
+                @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">                
 
-                                @foreach($errors->all() as $er)
-                                    <span><i class="icon-arrow-right5"></i> {{ $er }}</span> <br>
-                                @endforeach
+                    @foreach($errors->all() as $er)
+                        <span><i class="icon-arrow-right5"></i> {{ $er }}</span> <br>
+                    @endforeach
 
-                        </div>
-                    @endif
-                    <div id="ajax-alert" style="display: none"></div>
-                    <!-- /info & alert -->
-
-                    @yield('content')
-
-                    @yield('footer')
-
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-                <!-- /content area -->
+                @endif
+                <div id="ajax-alert" style="display: none"></div>
+                <!-- /info & alert -->
 
-                @include('lcms::layout-inc.footer')          
+                @yield('content')
+
+                @yield('footer')
 
             </div>
-            <!-- /inner content -->
+            <!-- /content area -->
+
+            @include('lcms::layout-inc.footer')
 
         </div>
-        <!-- /main content -->
+        <!-- /inner content -->
 
     </div>
-    <!-- /page content -->
+    <!-- /main content -->
+
+</div>
+<!-- /page content -->
+
+<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-image-editor.min.js') }}"></script>
+<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-config.js') }}"></script>
+<script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
 
 
-    {{-- Notification --}}
-    <script src="{{ asset('vendor/lcms/js/sweet_alert2.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/pnotify.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/app.js') }}"></script>    
-    <script src=" {{ asset('vendor/lcms/js/custom.js') }} "></script>
-    @include('lcms::layout-inc.js.custom_js') 
-    @stack('footer')
+@include('lcms::layout-inc.custom_js') 
+
+@stack('footer')
 
 </body>
 </html>

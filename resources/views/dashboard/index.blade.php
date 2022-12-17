@@ -7,16 +7,21 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header header-elements-inline">
-        <h6 class="card-title font-weight-semibold "> Dashboard </h6>
+    <div class="card-header d-flex">
+        <h5 class="mb-0">Dashboard</h5>
+
+        <a type="button" class="btn btn-sm btn-primary ms-auto" href="{{route('lcms_article.create')}}"> <i class="icon-plus2 me-2"></i> Add </a>
     </div>
 
     <div class="card-body">
-        
-    	<h2>Dashboard</h2>
-
+        <form action="{{route('lcms_media.store')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="ufile">
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
     </div>
-
+           
+    
 </div>
 
 @endsection
