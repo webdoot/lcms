@@ -1,0 +1,47 @@
+
+/* Navebar */
+.navbar {
+  --navbar-brand-width: 11.2rem;
+}
+.sidebar {
+  --sidebar-width: 16rem;
+}
+
+/* Sidebar */
+.nav-sidebar .nav-link i {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* notify bar */
+.noty_type__confirm {
+  background-color: #fff;
+  color: inherit;
+}
+
+/* Datatable  */
+.dataTable thead .sorting:not(.sorting_asc)::after, 
+.dataTable thead .sorting_desc_disabled::after {
+  content: "\e9c6";
+  font-family: icomoon;
+}
+.dataTable thead .sorting:not(.sorting_desc)::before, 
+.dataTable thead .sorting_asc_disabled::before {
+  content: "\e9c5";
+  font-family: icomoon;
+}
+
+/* Dropzone  */
+.dropzone .dz-default.dz-message::before {
+  content: "\ec74";
+  font-family: icomoon;
+}
+.dropzone .dz-preview .dz-error-mark::after {
+  content: "\ed4f";
+  font-family: icomoon;
+}
+
+/* Media Galery  */
+.card-img-top {
+  height: 200px !important;
+}

@@ -20,7 +20,7 @@ class Media extends Model
 
     protected $table = 'lcms_media';
 
-    protected $fillable = [ 'name', 'url', 'alt', 'width', 'height', 'ext', 'description', 'user_id' ];
+    protected $fillable = [ 'name', 'url', 'alt', 'width', 'height', 'ext', 'description', 'owner_id' ];
 
     protected $appends = [ 'name_dsp', 'url_dsp' ];
 

@@ -34,28 +34,28 @@
 
                 {{--Media--}}  
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_media.index', ['type'=>'all']) }}" class="nav-link {{ (Route::is('lcms_media.index')) ? 'active' : '' }}"> <i class="icon-images3"></i> <span>Media</span> </a>
+                    <a href="{{ route('lcms_media.index', ['type'=>'all']) }}" class="nav-link {{ (Route::is('lcms_media.*')) ? 'active' : '' }}"> <i class="icon-images3"></i> <span>Media</span> </a>
                 </li>  
 
                 {{--Article--}}  
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_article.index') }}" class="nav-link {{ (Route::is('lcms_article.index')) ? 'active' : '' }}"> <i class="icon-file-text2"></i> <span>Article</span> </a>
+                    <a href="{{ route('lcms_article.index') }}" class="nav-link {{ (Route::is('lcms_article.*')) ? 'active' : '' }}"> <i class="icon-file-text2"></i> <span>Article</span> </a>
                 </li> 
 
                 {{--Menu--}}  
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_menu.index') }}" class="nav-link {{ (Route::is('lcms_menu.index')) ? 'active' : '' }}"> <i class="icon-grid"></i> <span>Menu</span> </a>
+                    <a href="{{ route('lcms_menu.index') }}" class="nav-link {{ (Route::is('lcms_menu.*')) ? 'active' : '' }}"> <i class="icon-grid"></i> <span>Menu</span> </a>
                 </li>  
 
                 {{--Post--}}  
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_post.index') }}" class="nav-link {{ (Route::is('lcms_post.index')) ? 'active' : '' }}"> <i class="icon-stack2"></i> <span>Post</span> </a>
+                    <a href="{{ route('lcms_post.index') }}" class="nav-link {{ (Route::is('lcms_post.*')) ? 'active' : '' }}"> <i class="icon-stack2"></i> <span>Post</span> </a>
                 </li>
 
                 {{--Setting--}}  
                 @if(Lcms::isAdmin())
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_setting.index') }}" class="nav-link {{ (Route::is('lcms_setting.index')) ? 'active' : '' }}"> <i class="icon-cog"></i> <span>Settings</span> </a>
+                    <a href="{{ route('lcms_setting.index') }}" class="nav-link {{ (Route::is('lcms_setting.*')) ? 'active' : '' }}"> <i class="icon-cog"></i> <span>Settings</span> </a>
                 </li> 
                 @endif
 

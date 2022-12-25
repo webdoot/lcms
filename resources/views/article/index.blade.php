@@ -2,11 +2,6 @@
 @section('page_title', 'Article')
 
 @push('head')
-<style type="text/css">
-
-	
-
-</style>
 @endpush
 
 @section('content')
@@ -27,27 +22,31 @@
 					<th width="25%">Title</th>
 					<th>Content</th>
 					<th>Images</th>
-					<th>Status Code</th>
+					<th>Ref. Code</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($articles as $a)
 				<tr>
 					<td>{{$loop->iteration}}</td>
-					<td>						
-						<span class="fw-semibold d-block">{{$a->title_dsp}}</span>
-						<span class="fst-italic text-muted d-block">{{$a->sub_title}}</span>
-						<span class="fst-italic text-muted d-block">{{$a->label}}</span>
+					<td>
+						<a href="{{ route('lcms_article.show', $a->id) }}">
+							<span class="fw-semibold d-block">{{$a->title_dsp}}</span>
+							<span class="fst-italic text-muted d-block">{{$a->sub_title}}</span>
+							<span class="fst-italic text-muted d-block">{{$a->label}}</span>
+						</a>
 					</td>
 					<td>
-						<span class="d-block">{{$a->content_dsp}}</span>
-						<span class="fst-italic text-muted d-block">{{$a->sub_content_dsp}}</span>
+						<span class="d-block">{!! $a->content_dsp !!}</span>
+						<span class="fst-italic text-muted d-block">{!! $a->sub_content_dsp !!}</span>
 					</td>
 					<td>
-						@foreach($a->images as $img)
-						<img src="{{$img}}" class="img-thumbnail" width="30">
+						@foreach($a->media as $m)
+						<img src="{{$m}}" class="border rounded" width="30">
 						@endforeach
 					</td>
+					<td> <code>{{$a->code}}</code> </td>
 					<td class="d-flex"> 
 						{{--EDIT--}}                        
                         <a href="{{ route('lcms_article.edit', $a->id) }}" class="btn btn-icon btn-outline-success d-inline-flex me-2"><i class="icon-pencil"></i> </a>
@@ -70,6 +69,9 @@
 
 @push('footer')
 <script>
+	// Datatable setting defaults
+	$.extend( $.fn.dataTable.defaults, { columnDefs: [{ orderable: false, width: 100, targets: [ 4, 5 ] }] });
+
 	// Data table
 	$('.datatable').DataTable();
 

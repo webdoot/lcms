@@ -29,11 +29,11 @@ class CreateLcmsArticlesTable extends Migration
             $table->string('label')->nullable();
             $table->text('content')->nullable();
             $table->text('sub_content')->nullable();
-            $table->text('images')->nullable();       // array
-            $table->text('metas')->nullable();        // array
+            $table->text('media')->nullable();       // array
+            $table->text('meta')->nullable();        // array
             $table->string('type', 50)->nullable();   // article|post|menu|slider|form
-            $table->string('status', 50)->nullable(); // published|draft
-            $table->string('owner')->nullable();        // {"user_id":1, "name":"Vikram", "role":"admin"}
+            $table->string('owner_id', 50)->nullable();        // Owner user id
+            $table->string('code', 50)->nullable();        // Article code
             $table->dateTime('published_at')->nullable();
 
             $table->timestamps();

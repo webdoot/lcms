@@ -12,7 +12,6 @@
     <link rel="icon" href="{{ asset('vendor/lcms/favicon.png') }}">
 
     <!-- Global stylesheets -->
-    <link href="{{asset('vendor/lcms/fonts/inter/inter.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendor/lcms/css/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('vendor/lcms/css/all.min.css')}}" id="stylesheet" rel="stylesheet" type="text/css">
     <link href="{{ asset('vendor/lcms/css/lcms.css')}}" id="stylesheet" rel="stylesheet" type="text/css">
@@ -24,13 +23,10 @@
     <script src="{{ asset('vendor/lcms/js/datatables.min.js') }}"></script>
     <script src="{{ asset('vendor/lcms/js/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/lcms/js/dropzone.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/fileinput/fileinput.min.js') }}"></script>
-    <script src="{{ asset('vendor/lcms/js/fileinput/sortable.min.js') }}"></script>
     <script src="{{ asset('vendor/lcms/js/glightbox.min.js') }}"></script>
     
     <!-- Theme JS files -->
     <script src="{{ asset('vendor/lcms/js/app.js') }}"></script>
-    <!-- <script src="{{ asset('vendor/lcms/js/content_cards_content.js') }}"></script> -->
     <script src="{{ asset('vendor/lcms/js/lcms.js') }}"></script>
 
     @include('lcms::layout-inc.custom_css') 
@@ -94,8 +90,6 @@
 </div>
 <!-- /page content -->
 
-<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-image-editor.min.js') }}"></script>
-<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-config.js') }}"></script>
 <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
 
 

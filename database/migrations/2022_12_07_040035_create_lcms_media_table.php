@@ -29,7 +29,7 @@ class CreateLcmsMediaTable extends Migration
             $table->string('height', 50)->nullable();
             $table->string('ext', 50)->nullable();     // Extension: jpg, mp4, pdf, doc
             $table->string('description')->nullable();  // short description
-            $table->string('user_id')->nullable();      // Owners user_id
+            $table->string('owner_id', 50)->nullable();      // Owners user_id
 
             $table->timestamps();
         });

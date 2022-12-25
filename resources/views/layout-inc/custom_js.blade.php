@@ -52,43 +52,25 @@
         }).show();
     }
 
+    {{-- Get Media In Modal --}}
+    // function getMediaModel(){
+    //     var url = '{{ route('lcms_media.index') }}';
+    //     var destination = $('.show-media-box');
+    //     $.ajax({
+    //         dataType: 'json',
+    //         url: url,
+    //         success: function (resp) {
+    //             destination.empty(); 
+    //             $.each(resp.medias, function (i, data) {
+    //                 var html = '<div class="col-lg-2 col-md-3 col-4"><img src="'+ data.url +'" class="img-fluid media-selectable"></div>';
+    //                 destination.append(html);
+    //             });
+    //         }
+    //     })
+    // }
 
 
-    {{--   File uploader start   --}}
-    // Buttons inside zoom modal
-    const previewZoomButtonClasses = {
-        rotate: 'btn btn-light btn-icon btn-sm',
-        toggleheader: 'btn btn-light btn-icon btn-header-toggle btn-sm',
-        fullscreen: 'btn btn-light btn-icon btn-sm',
-        borderless: 'btn btn-light btn-icon btn-sm',
-        close: 'btn btn-light btn-icon btn-sm'
-    };
 
-    // Icons inside zoom modal classes
-    const previewZoomButtonIcons = {
-        prev: document.dir == 'rtl' ? '<i class="icon-arrow-right8"></i>' : '<i class="icon-arrow-left8"></i>',
-        next: document.dir == 'rtl' ? '<i class="icon-arrow-left8"></i>' : '<i class="icon-arrow-right8"></i>',
-        rotate: '<i class="icon-rotate-cw3"></i>',
-        toggleheader: '<i class="icon-sort"></i>',
-        fullscreen: '<i class="icon-screen-full"></i>',
-        borderless: '<i class="icon-enlarge3 "></i>',
-        close: '<i class="icon-cross2"></i>'
-    };
-
-    // File actions
-    const fileActionSettings = {
-        zoomClass: '',
-        zoomIcon: '<i class="icon-zoomin3"></i>',
-        dragClass: 'p-2',
-        dragIcon: '<i class="icon-grid2"></i>',
-        removeClass: '',
-        removeErrorClass: 'text-danger',
-        removeIcon: '<i class="icon-bin"></i>',
-        indicatorNew: '<i class="icon-file-plus text-success"></i>',
-        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
-        indicatorError: '<i class="icon-cross2 text-danger"></i>',
-        indicatorLoading: '<i class="icon-spinner3 spinner text-muted"></i>'
-    };
-    {{--   File uploader end   --}}
+    
 
 </script>

@@ -36,10 +36,10 @@
 
 <div class="row">	
 	@foreach($medias as $m)
-	<div class="col-lg-2 col-md-2 col-sm-4 col-xxl-2">		
+	<div class="col-lg-2 col-md-3 col-4">		
 		<div class="card">
 			<div class="card-img-actions">
-				<img class="card-img-top img-fluid" src="{{ $m->url_dsp }}" alt="{{ $m->alt }}" width="{{ $m->width }}" height="150px">
+				<img class="card-img-top img-fluid" src="{{ $m->url_dsp }}" alt="{{ $m->alt }}">
 				<div class="card-img-actions-overlay card-img-top">
 					<a href="{{ $m->url }}" class="btn btn-outline-white btn-icon rounded-pill" data-popup="lightbox"> 
 						<i class="icon-enlarge"></i>
@@ -125,7 +125,7 @@
 	</div>
 </div>
 
-<div id="edit_media_box" class="modal fade" tabindex="-1">
+<div id="media_edit_model" class="modal fade" tabindex="-1">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -144,6 +144,10 @@
 @endsection
 
 @push('footer')
+// Image editor plugin
+<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-image-editor.min.js') }}"></script>
+<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-config.js') }}"></script>
+
 <script>
 
 	$("#dropzone").dropzone({ 

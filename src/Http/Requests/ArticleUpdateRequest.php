@@ -11,7 +11,7 @@ namespace Webdoot\Lcms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticleCreateRequest extends FormRequest
+class ArticleUpdateRequest extends FormRequest
 {
     public function authorize()
     {

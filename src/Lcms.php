@@ -40,7 +40,7 @@ class Lcms
         return true;
     }
 
-    // Return role of logged in user
+    // Check logedin user is admin
     public static function isAdmin()
     {
         $id = Auth::id();
@@ -53,6 +53,12 @@ class Lcms
         $role = array_key_exists($id, $userid_role) ? $userid_role[$id] : '' ;
 
         return ($role=='admin') ? true : false ;
+    }
+
+    // Check logedin user is owner 
+    public static function isOwner($model)
+    {
+        return $model->owner_id == Auth::id();
     }
 
     // Return user information by id

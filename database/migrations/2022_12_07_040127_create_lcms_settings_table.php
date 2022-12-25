@@ -25,6 +25,35 @@ class CreateLcmsSettingsTable extends Migration
             $table->string('key');
             $table->text('value')->nullable();
         });
+
+
+        /*
+         * WARNING: Do not edit these settings. 
+         * All editable item is provided throught setting page.
+         */ 
+        echo 'seeding setting...', PHP_EOL;
+        DB::table('settings')->insert([                    
+            [   
+                'key' => 'site_title',                
+                'value' => 'LCMS',
+            ],
+            [   
+                'key' => 'site_sub_title',                
+                'value' => 'Laravel Content Management System',
+            ],
+            [   
+                'key' => 'site_logo',                
+                'value' => '/vendor/lcms/logo.png',
+            ],
+            [   
+                'key' => 'site_logo2',                
+                'value' => '/vendor/lcms/logo-bg.png',
+            ],
+            [   
+                'key' => 'site_favicon',                
+                'value' => '/vendor/lcms/favicon.png',
+            ]
+        ]);
     }
 
     /**

@@ -40,6 +40,7 @@ class MediaController extends Controller
         else {
             $d['medias'] = Media::latest()->get();
         }
+
         return view('lcms::media.index', $d);
     }
 
@@ -72,7 +73,7 @@ class MediaController extends Controller
                 $media->url = '/'. $folder. '/'. $file_name;
                 $media->ext = $ext;
                 // owner details
-                $media->user_id = Auth::id();
+                $media->owner_id = Auth::id();
                 $media->save();
                 
                 return response()->json(['success'=>$file_name]);

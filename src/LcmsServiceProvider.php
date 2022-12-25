@@ -19,8 +19,8 @@ class LcmsServiceProvider extends ServiceProvider
 		$this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 		$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-		// $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'lcms');
 		// Load: package::file.line, __('lcms::messages.welcome')
+		// $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'lcms');
 
 		// Load: return view('lcms::dashboard');
 		$this->loadViewsFrom(__DIR__.'/../resources/views', 'lcms');

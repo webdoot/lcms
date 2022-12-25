@@ -23,12 +23,11 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	Route::resource('/lcms_post', 'PostController')->except([]);
 
 	// Artcle 
-	Route::resource('/lcms_article', 'ArticleController')->except([]);
+	Route::resource('/lcms_article', 'ArticleController');
 
 	// Setting  
 	Route::get('/lcms_setting', 'SettingController@index')->name('lcms_setting.index'); 
 	Route::put('/lcms_setting', 'SettingController@update')->name('lcms_setting.update'); 
-	// Route::get('/lcms_setting/list', 'SettingController@edit')->name('lcms_setting.list');
 
 });
 

@@ -21,12 +21,11 @@ class Article extends Model
 
     protected $table = 'lcms_articles';
 
-    protected $fillable = [ 'category_id', 'title', 'sub_title', 'label', 'content', 'sub_content', 'images', 'metas', 'type', 'status', 'owner', 'published_at' ];
+    protected $fillable = [ 'category_id', 'title', 'sub_title', 'label', 'content', 'sub_content', 'media', 'meta', 'type', 'owner_id', 'code', 'published_at' ];
 
     protected $casts = [
-        'images'       => 'array',
-        'metas'        => 'array',
-        'owner'        => 'array',
+        'media'        => 'array',
+        'meta'         => 'array',
         'published_at' => 'datetime',
     ];
 
@@ -37,7 +36,7 @@ class Article extends Model
         return $this->published_at ? date('d-m-Y H:i:s', strtotime($this->published_at)) : '' ;
     }
 
-    public function getImagesAttribute($value)
+    public function getMediaAttribute($value)
     {   // No image return empty array
         return $value ? json_decode($value) : [] ;
     }
@@ -69,7 +68,7 @@ class Article extends Model
 
     public function getStatusDspAttribute()
     {   
-        if($this->status == 'published') {
+        if($this->published_at) {
             return ($this->getOwnerNameAttribute() ? $this->getOwnerNameAttribute(). ' | ' : ''). 'Published: '. $this->getPublishedAtDspAttribute();
         }
         else {
@@ -79,8 +78,15 @@ class Article extends Model
 
     public function getOwnerNameAttribute()
     {   
-        if ($this->owner) {
-            return array_key_exists('name', $this->owner) ? $this->owner['name'] : '' ;
+        if ($this->owner_id) {
+            $users = config('lcms.users');
+            $userid_name = array_column($users, 'name', 'user_id');
+
+            // Find name listed for current user 
+            return array_key_exists($this->owner_id, $userid_name) ? $userid_name[$id] : '' ;
+        }
+        else {
+            return '';
         }
     }
 
