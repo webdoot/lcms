@@ -23,7 +23,8 @@ class ArticleController extends Controller
     public function index()
     {
         // dd(array_key_exists(2, config('lcms.users')));
-        // dd(Lcms::isOwner());
+        // dd(Lcms::get('m_6', '1', 'items'));
+        // dd(json_encode([['name'=>'Vikram', 'age'=>38], ['name'=>'Amit', 'age'=>30]]));
 
         $d['articles'] = Article::where('type', 'article')->latest()->get();
         return view('lcms::article.index', $d);
@@ -48,9 +49,11 @@ class ArticleController extends Controller
         // Article data
         $article =  $req->only(['title', 'sub_title', 'label', 'content', 'sub_content', 'media']);
 
+        // ----- mandatory fields ------
         $article['category_id'] = 1;
         $article['owner_id'] = Auth::id();
         $article['type'] = 'article';
+        // ---- end mandatory fields ----
 
         // Meta
         if (!empty($req->meta_keys[0])) {
@@ -68,7 +71,7 @@ class ArticleController extends Controller
         $article = Article::create($article);
 
         // update code
-        $article->code = 'A-'. $article->id ;
+        $article->code = 'a_'. $article->id ;
         $article->save();
 
         return redirect()->route('lcms_article.edit', $article->id)->with('flash_success', 'Article created.');        

@@ -67,13 +67,17 @@ class MediaController extends Controller
 
             // upload
             if ($file->move(public_path($folder),$file_name)) {
-                // update db
-                $media = new Media;
-                $media->name = $file_name;
-                $media->url = '/'. $folder. '/'. $file_name;
-                $media->ext = $ext;
+                $media['name'] = $file_name;
+                $media['url'] = '/'. $folder. '/'. $file_name;
+                $media['ext'] = $ext;
                 // owner details
-                $media->owner_id = Auth::id();
+                $media['owner_id'] = Auth::id();
+
+                // create article
+                $media = Media::create($media);
+
+                // update code
+                $media->code = 'md_'. $media->id ;
                 $media->save();
                 
                 return response()->json(['success'=>$file_name]);

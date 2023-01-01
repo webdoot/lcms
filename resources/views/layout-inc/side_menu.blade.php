@@ -59,6 +59,11 @@
                 </li> 
                 @endif
 
+                {{--Icons--}}  
+                <li class="nav-item mb-2">
+                    <a href="{{ route('lcms_icon.index') }}" class="nav-link {{ (Route::is('lcms_icon.*')) ? 'active' : '' }}"> <i class="icon-stack2"></i> <span>Icons</span> </a>
+                </li>
+
             </ul>
         </div>
         <!-- /main navigation -->

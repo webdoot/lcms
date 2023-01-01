@@ -27,7 +27,9 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 
 	// Setting  
 	Route::get('/lcms_setting', 'SettingController@index')->name('lcms_setting.index'); 
-	Route::put('/lcms_setting', 'SettingController@update')->name('lcms_setting.update'); 
+	Route::put('/lcms_setting', 'SettingController@update')->name('lcms_setting.update');
+	// Icons  
+	Route::get('/lcms_icon', 'SettingController@icon')->name('lcms_icon.index'); 
 
 });
 

@@ -29,7 +29,7 @@ class Article extends Model
         'published_at' => 'datetime',
     ];
 
-    protected $appends = [ 'published_at_dsp', 'title_dsp', 'sub_title_dsp', 'label_dsp', 'content_dsp', 'sub_content_dsp', 'status_dsp', 'owner_name' ];
+    protected $appends = [ 'published_at_dsp', 'title_dsp', 'sub_title_dsp', 'label_dsp', 'content_dsp', 'content_json', 'sub_content_dsp', 'status_dsp', 'owner_name' ];
 
     public function getPublishedAtDspAttribute()
     {   // published at display
@@ -59,6 +59,11 @@ class Article extends Model
     public function getContentDspAttribute()
     {   
         return $this->content ? mb_strimwidth(strip_tags($this->content), 0, 140, "...") : '' ;
+    }
+
+    public function getContentJsonAttribute()
+    {   
+        return $this->content ? json_decode($this->content) : [] ;
     }
 
     public function getSubContentDspAttribute()

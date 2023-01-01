@@ -12,20 +12,45 @@ namespace Webdoot\Lcms;
 
 use Illuminate\Support\Facades\Auth;
 use Webdoot\Lcms\Models\Setting;
-use Illuminate\Support\Arr;
+use Webdoot\Lcms\Models\Article;
+use Webdoot\Lcms\Models\Media;
+// use Illuminate\Support\Arr;
 
 class Lcms
 {
-    public static function get($code)
+    public static function get($code, $sub_code=null, $arr_key=null)
     {
-    	// Get from Article
-    	if(substr($code, 1, 1) === '_')
+    	// Get Article
+    	if(substr($code, 0, 2) === 'a_')
     	{
-    		return 'Article' ;
+            $id = substr($code, 2);
+            $article = Article::find($id);
+            $article = $sub_code ? $article->$sub_code : $article ;
+            $article = ($sub_code && $arr_key!==null) ? $article[$arr_key] : $article ;
+    		return $article ;
     	}
 
-    	// Get from Setting
-    	elseif(substr($code, 1, 1) != '_')
+        // Get Menu
+        if(substr($code, 0, 2) === 'm_')
+        {
+            $id = substr($code, 2);
+            $menu = Article::find($id)->content_json;
+            $menu = $sub_code!==null ? $menu[$sub_code] : $menu ;
+            $menu = ($sub_code!==null && $arr_key!==null) ? $menu->$arr_key : $menu ;
+            return $menu ;
+        }
+
+        // Get Media
+        if(substr($code, 0, 3) === 'md_')
+        {
+            $id = substr($code, 3);
+            $media = Media::find($id);
+            $media = $sub_code ? $media->$sub_code : $media ;
+            return $media ;
+        }
+
+    	// Get Setting
+    	elseif(substr($code, 0, 5) == 'site_')
     	{
     		return Setting::get($code) ;
     	}

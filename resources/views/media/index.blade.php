@@ -51,7 +51,7 @@
 			</div>
 
 			<div class="text-center bg-light p-1">
-				<span class="text-muted"> {{ $m->name_dsp }} </span>
+				<code> {{ $m->code }} </code>
 			</div>
 		</div>
 	</div>

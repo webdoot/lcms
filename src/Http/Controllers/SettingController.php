@@ -36,4 +36,11 @@ class SettingController extends Controller
         return back()->with('flash_success', 'Site setting updated..');
     }
 
+
+    // icons
+    public function icon()
+    {
+        return view('lcms::setting.icon');
+    }
+
 }

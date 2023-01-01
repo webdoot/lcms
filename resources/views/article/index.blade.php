@@ -22,7 +22,7 @@
 					<th width="25%">Title</th>
 					<th>Content</th>
 					<th>Images</th>
-					<th>Ref. Code</th>
+					<th>Code</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -33,8 +33,8 @@
 					<td>
 						<a href="{{ route('lcms_article.show', $a->id) }}">
 							<span class="fw-semibold d-block">{{$a->title_dsp}}</span>
-							<span class="fst-italic text-muted d-block">{{$a->sub_title}}</span>
-							<span class="fst-italic text-muted d-block">{{$a->label}}</span>
+							<span class="fst-italic text-muted d-block">{{$a->sub_title_dsp}}</span>
+							<span class="fst-italic text-muted d-block">{{$a->label_dsp}}</span>
 						</a>
 					</td>
 					<td>
