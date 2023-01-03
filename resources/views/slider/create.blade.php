@@ -1,5 +1,5 @@
 @extends('lcms::layout')
-@section('page_title', 'Menu')
+@section('page_title', 'Slider')
 
 @push('head')
 <style>
@@ -24,12 +24,12 @@
 
 <div class="card">
     <div class="card-header d-flex align-items-center">
-        <h5 class="mb-0">Add Menu Items</h5>
+        <h5 class="mb-0">Add Slider Items</h5>
     </div>
 
     <div class="card-body">
 		<div class="row mb-3">
-			<label class="col-md-1 col-form-label">Menu Title:</label>
+			<label class="col-md-1 col-form-label">Slider Title:</label>
 			<div class="col-md-6">
 				<input type="text" class="form-control" name="title" placeholder="Title" required>
 				<code class="float-end">title</code>

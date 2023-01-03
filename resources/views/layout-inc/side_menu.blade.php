@@ -44,8 +44,18 @@
 
                 {{--Menu--}}  
                 <li class="nav-item mb-2">
-                    <a href="{{ route('lcms_menu.index') }}" class="nav-link {{ (Route::is('lcms_menu.*')) ? 'active' : '' }}"> <i class="icon-grid"></i> <span>Menu</span> </a>
-                </li>  
+                    <a href="{{ route('lcms_menu.index') }}" class="nav-link {{ (Route::is('lcms_menu.*')) ? 'active' : '' }}"> <i class="icon-list"></i> <span>Menu</span> </a>
+                </li> 
+
+                {{--Slider--}}  
+                <li class="nav-item mb-2">
+                    <a href="{{ route('lcms_slider.index') }}" class="nav-link {{ (Route::is('lcms_slider.*')) ? 'active' : '' }}"> <i class="icon-grid5"></i> <span>Slider</span> </a>
+                </li> 
+
+                {{--Gallery--}}  
+                <li class="nav-item mb-2">
+                    <a href="{{ route('lcms_gallery.index') }}" class="nav-link {{ (Route::is('lcms_gallery.*')) ? 'active' : '' }}"> <i class="icon-gallery"></i> <span>Gallery</span> </a>
+                </li> 
 
                 {{--Post--}}  
                 <li class="nav-item mb-2">

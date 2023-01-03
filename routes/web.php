@@ -16,14 +16,21 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	// Media 
 	Route::resource('/lcms_media', 'MediaController')->except([]);
 
+	// Artcle 
+	Route::resource('/lcms_article', 'ArticleController');
+
 	// Menu 
-	Route::resource('/lcms_menu', 'MenuController')->except([]);
+	Route::resource('/lcms_menu', 'MenuController');
 
 	// Post 
 	Route::resource('/lcms_post', 'PostController')->except([]);
 
-	// Artcle 
-	Route::resource('/lcms_article', 'ArticleController');
+	// Slider 
+	Route::resource('/lcms_slider', 'SliderController')->except([]);
+
+	// Gallery 
+	Route::resource('/lcms_gallery', 'GalleryController')->except([]);
+
 
 	// Setting  
 	Route::get('/lcms_setting', 'SettingController@index')->name('lcms_setting.index'); 

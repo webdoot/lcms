@@ -13,22 +13,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webdoot\Lcms\Models\Article;
-use Webdoot\Lcms\Http\Requests\MenuCreateRequest;
-use Webdoot\Lcms\Http\Requests\MenuUpdateRequest;
+use Webdoot\Lcms\Http\Requests\SliderCreateRequest;
+use Webdoot\Lcms\Http\Requests\SliderUpdateRequest;
 use Webdoot\Lcms\Lcms;
 
-class MenuController extends Controller
+class SliderController extends Controller
 {
     public function index()
     {
-        $d['menus'] = Article::where('type', 'menu')->latest()->get();
-        return view('lcms::menu.index', $d);
+        $d['sliders'] = Article::where('type', 'slider')->latest()->get();
+        return view('lcms::slider.index', $d);
     }
 
     
     public function create()
     {
-        return view('lcms::menu.create');
+        return view('lcms::slider.create');
     }
 
     
@@ -37,41 +37,41 @@ class MenuController extends Controller
         $data['title'] = $req->title;
 
         // insert item key if not
-        foreach ($req->menu as $menu) {
-            if (!array_key_exists('items', $menu)) {
-                $menu['items'] = [];
+        foreach ($req->slider as $slider) {
+            if (!array_key_exists('items', $slider)) {
+                $slider['items'] = [];
             }
-            $menus[] = $menu;
+            $sliders[] = $slider;
         }
 
-        $data['content'] = json_encode($menus);
+        $data['content'] = json_encode($sliders);
 
         // ------ mandatory fields ------
         $data['category_id'] = 1;
         $data['owner_id'] = Auth::id();
-        $data['type'] = 'menu';
+        $data['type'] = 'slider';
         // ---- end mandatory fields ----
 
         $article = Article::create($data);
-        $article->code = 'm_'. $article->id ;
+        $article->code = 's_'. $article->id ;
         $article->save();
 
-        return redirect()->route('lcms_menu.index')->with('flash_success', 'Menu created.');
+        return redirect()->route('lcms_slider.index')->with('flash_success', 'Slider created.');
 
     }
 
     
     public function show($id)
     {
-        $d['menu'] = Article::where('type', 'menu')->find($id);
-        return view('lcms::menu.show', $d);
+        $d['slider'] = Article::where('type', 'slider')->find($id);
+        return view('lcms::slider.show', $d);
     }
 
     
     public function edit($id)
     {
-        $d['menu'] = Article::where('type', 'menu')->find($id);
-        return view('lcms::menu.edit', $d);
+        $d['slider'] = Article::where('type', 'slider')->find($id);
+        return view('lcms::slider.edit', $d);
     }
 
     
@@ -80,17 +80,17 @@ class MenuController extends Controller
         $data['title'] = $req->title;
         
         // insert item key if not
-        foreach ($req->menu as $menu) {
-            if (!array_key_exists('items', $menu)) {
-                $menu['items'] = [];
+        foreach ($req->slider as $slider) {
+            if (!array_key_exists('items', $slider)) {
+                $slider['items'] = [];
             }
-            $menus[] = $menu;
+            $sliders[] = $slider;
         }
 
-        $data['content'] = json_encode($menus);
+        $data['content'] = json_encode($sliders);
         Article::find($id)->update($data);
 
-        return back()->with('flash_success', 'Menu updated.');
+        return back()->with('flash_success', 'Slider updated.');
     }
 
     
@@ -101,6 +101,6 @@ class MenuController extends Controller
 
         Article::destroy($id);
 
-        return back()->with('flash_success', 'Menu deleted.');
+        return back()->with('flash_success', 'Sliser deleted.');
     }
 }

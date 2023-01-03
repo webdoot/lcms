@@ -1,5 +1,5 @@
 @extends('lcms::layout')
-@section('page_title', 'Menu')
+@section('page_title', 'Slider')
 
 @push('head')
 @endpush
@@ -10,7 +10,7 @@
     <div class="card-header d-flex align-items-center">
         <h5 class="mb-0">List</h5>
         @if(Lcms::isAdmin())
-        <a class="btn btn-sm btn-outline-primary d-inline-flex ms-auto" href="{{route('lcms_menu.create')}}"> <i class="icon-plus2 me-2"></i> Add </a>
+        <a class="btn btn-sm btn-outline-primary d-inline-flex ms-auto" href="{{route('lcms_slider.create')}}"> <i class="icon-plus2 me-2"></i> Add </a>
         @endif
     </div>
 
@@ -26,25 +26,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($menus as $m) 
+				@foreach($sliders as $s) 
 				<tr>
 					<td>{{$loop->iteration}}</td>
 					<td>
-						<a href="{{ route('lcms_menu.show', $m->id) }}">
-							<span class="fw-semibold d-block">{{$m->title}}</span>
+						<a href="{{ route('lcms_menu.show', $s->id) }}">
+							<span class="fw-semibold d-block">{{$s->title}}</span>
 						</a>
 					</td>
 					<td>
-						<span class="d-block">{{$m->content_json ? implode(', ', array_column($m->content_json, 'name')) : '' }}</span>
+						@foreach($s->content_json as $m)
+						<img src="{{$m->url}}" class="border rounded" width="30">
+						@endforeach
 					</td>
-					<td> <code>{{$m->code}}</code> </td>
+					<td> <code>{{$s->code}}</code> </td>
 					<td class="d-flex"> 
 						{{--EDIT--}}                        
-                        <a href="{{ route('lcms_menu.edit', $m->id) }}" class="btn btn-icon btn-outline-success d-inline-flex me-2"><i class="icon-pencil"></i> </a>
+                        <a href="{{ route('lcms_slider.edit', $s->id) }}" class="btn btn-icon btn-outline-success d-inline-flex me-2"><i class="icon-pencil"></i> </a>
 
                         {{--DELETE--}} 
-                        <a id="{{ $m->id }}" onclick="confirmDelete(this.id)" href="#" class="btn btn-icon btn-outline-danger d-inline-flex"><i class="icon-trash"></i> </a>
-                        <form method="post" id="item-delete-{{ $m->id }}" action="{{ route('lcms_menu.destroy', $m->id) }}" class="hidden">@csrf @method('delete')</form>                       
+                        <a id="{{ $s->id }}" onclick="confirmDelete(this.id)" href="#" class="btn btn-icon btn-outline-danger d-inline-flex"><i class="icon-trash"></i> </a>
+                        <form method="post" id="item-delete-{{ $s->id }}" action="{{ route('lcms_slider.destroy', $s->id) }}" class="hidden">@csrf @method('delete')</form>                       
 					</td>
 				</tr>
 				@endforeach								
