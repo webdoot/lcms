@@ -11,7 +11,7 @@ namespace Webdoot\Lcms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MenuUpdateRequest extends FormRequest
+class SliderUpdateRequest extends FormRequest
 {
     public function authorize()
     {
@@ -23,15 +23,13 @@ class MenuUpdateRequest extends FormRequest
         return [
             'title'             => 'required|string',
 
-            "menu"              => "sometimes|required|array",
-            "menu.*.name"       => "sometimes|required|string",
-            "menu.*.url"        => "sometimes|nullable|string",
-            "menu.*.image"      => "sometimes|nullable|string",
-            "menu.*.description"=> "sometimes|nullable|string",
-            "menu.*.items"      => "sometimes|nullable|array",
-            "menu.*.items.*.*"  => "sometimes|nullable|string",
+            "slides"              => "sometimes|required|array",
+            "slides.*.image"      => "sometimes|required|string",
+            "slides.*.name"       => "sometimes|nullable|string",
+            "slides.*.description"=> "sometimes|nullable|string",
+            "slides.*.url"        => "sometimes|nullable|string",
 
-            'action'            => 'required|in:menu',
+            'action'            => 'required|in:slider',
         ];
     }
 

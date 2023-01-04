@@ -35,7 +35,7 @@
 				<input type="text" class="form-control" name="title" placeholder="Title" value="{{$menu->title}}" required>
 				<code class="float-end">title</code>
 			</div>
-			<div class="col-md-3 action-btn">
+			<div class="col-md-3">
 				<a class="btn btn-sm btn-outline-primary me-3 add-menu-btn" onclick="addItemBox(this)"> <i class="icon-plus2 me-2"></i> Add Item </a>
 				<button type="submit" class="btn btn-sm btn-success"> <i class="icon-paperplane me-2"></i> Update </button>
 			</div>

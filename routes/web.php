@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	Route::resource('/lcms_post', 'PostController')->except([]);
 
 	// Slider 
-	Route::resource('/lcms_slider', 'SliderController')->except([]);
+	Route::resource('/lcms_slider', 'SliderController');
 
 	// Gallery 
 	Route::resource('/lcms_gallery', 'GalleryController')->except([]);

@@ -21,7 +21,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $d['sliders'] = Article::where('type', 'slider')->latest()->get();
+        $d['slides'] = Article::where('type', 'slider')->latest()->get();
         return view('lcms::slider.index', $d);
     }
 
@@ -32,19 +32,11 @@ class SliderController extends Controller
     }
 
     
-    public function store(MenuCreateRequest $req)
+    public function store(SliderCreateRequest $req)
     {
         $data['title'] = $req->title;
 
-        // insert item key if not
-        foreach ($req->slider as $slider) {
-            if (!array_key_exists('items', $slider)) {
-                $slider['items'] = [];
-            }
-            $sliders[] = $slider;
-        }
-
-        $data['content'] = json_encode($sliders);
+        $data['content'] = json_encode($req->slides);
 
         // ------ mandatory fields ------
         $data['category_id'] = 1;
@@ -63,31 +55,22 @@ class SliderController extends Controller
     
     public function show($id)
     {
-        $d['slider'] = Article::where('type', 'slider')->find($id);
+        $d['slide'] = Article::where('type', 'slider')->find($id);
         return view('lcms::slider.show', $d);
     }
 
     
     public function edit($id)
     {
-        $d['slider'] = Article::where('type', 'slider')->find($id);
+        $d['slide'] = Article::where('type', 'slider')->find($id);
         return view('lcms::slider.edit', $d);
     }
 
     
-    public function update(MenuUpdateRequest $req, $id)
+    public function update(SliderUpdateRequest $req, $id)
     {
         $data['title'] = $req->title;
-        
-        // insert item key if not
-        foreach ($req->slider as $slider) {
-            if (!array_key_exists('items', $slider)) {
-                $slider['items'] = [];
-            }
-            $sliders[] = $slider;
-        }
-
-        $data['content'] = json_encode($sliders);
+        $data['content'] = json_encode($req->slides);
         Article::find($id)->update($data);
 
         return back()->with('flash_success', 'Slider updated.');
@@ -101,6 +84,6 @@ class SliderController extends Controller
 
         Article::destroy($id);
 
-        return back()->with('flash_success', 'Sliser deleted.');
+        return back()->with('flash_success', 'Slider deleted.');
     }
 }
