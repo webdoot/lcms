@@ -32,7 +32,7 @@ class CreateLcmsSettingsTable extends Migration
          * All editable item is provided throught setting page.
          */ 
         echo 'seeding setting...', PHP_EOL;
-        DB::table('settings')->insert([                    
+        DB::table('lcms_settings')->insert([                    
             [   
                 'key' => 'site_title',                
                 'value' => 'LCMS',

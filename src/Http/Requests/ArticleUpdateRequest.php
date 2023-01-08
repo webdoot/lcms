@@ -33,7 +33,7 @@ class ArticleUpdateRequest extends FormRequest
             "meta_vals"     => "sometimes|required|array",
             "meta_vals.*"   => "sometimes|required|string",
 
-            'action'       => 'required|in:post',
+            'action'       => 'required|in:article',
         ];
     }
 

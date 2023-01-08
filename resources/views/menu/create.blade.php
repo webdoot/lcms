@@ -58,7 +58,7 @@
 		let html = '<div class="row">';
 		html += '<div class="col-md-7 item-box">';
 		html += '<div class="card">';
-		html += '<div class="card-header d-flex flex-wrap pb-0"> <p class="fw-semibold item-title">Add</p> <div class="d-inline-flex ms-auto"> <a href="#" class="text-body add-sub-menu-btn me-3" data-m='+ i +' data-n="0" onclick="addSubItemBox(this)" style="margin-top: -3px"> <i class="icon-plus2"></i> Add Sub Item </a> <a class="text-body" data-card-action="collapse"> <i class="icon-arrow-down12"></i> </a> <a class="text-body ms-2" data-card-action="remove"> <i class="icon-cross3"></i> </a> </div> </div>';
+		html += '<div class="card-header d-flex flex-wrap pb-0"> <p class="fw-semibold item-title">Item</p> <div class="d-inline-flex ms-auto"> <a href="#" class="text-body add-sub-menu-btn me-3" data-m='+ i +' data-n="0" onclick="addSubItemBox(this)" style="margin-top: -3px"> <i class="icon-plus2"></i> Add Sub Item </a> <a class="text-body" data-card-action="collapse"> <i class="icon-arrow-down12"></i> </a> <a class="text-body ms-2" data-card-action="remove"> <i class="icon-cross3"></i> </a> </div> </div>';
 		html += '<div class="collapse show"> <div class="card-body">';
 		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Name:</label> <div class="col-md-10"> <input type="text" class="form-control" name="menu['+ i +'][name]" placeholder="Name"> <code class="float-end">name</code> </div> </div>';
 		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Url:</label> <div class="col-md-10"> <input type="text" class="form-control" name="menu['+ i +'][url]" placeholder="Url"> <code class="float-end">url</code> </div> </div>';

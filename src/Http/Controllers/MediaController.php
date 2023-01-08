@@ -96,15 +96,29 @@ class MediaController extends Controller
     
     public function edit($id)
     {
-        // Ajax request from model for image attribute edit
-        return response()->json(['id'=>$id]);
+        $media = Media::find($id);
+        return response()->json($media);
     }
 
     
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
         // Ajax request from model
-        // return response()->json(['id'=>$id]);
+        // validate
+        $req->validate([
+            'name'         => 'nullable|string',    
+            'alt'          => 'nullable|string',
+            'width'        => 'nullable|string',
+            'height'       => 'nullable|string',    
+            'description'  => 'nullable|string',
+            'action'       => 'required|in:media_details',
+        ]);
+
+        $media =  $req->only(['name', 'alt', 'width', 'height', 'description']);     
+        // update
+        Media::find($id)->update($media);
+
+        return response()->json(['success'=>'Media updated...']);
     }
 
     

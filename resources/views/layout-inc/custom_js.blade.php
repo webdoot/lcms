@@ -51,26 +51,6 @@
             ]
         }).show();
     }
-
-    {{-- Get Media In Modal --}}
-    // function getMediaModel(){
-    //     var url = '{{ route('lcms_media.index') }}';
-    //     var destination = $('.show-media-box');
-    //     $.ajax({
-    //         dataType: 'json',
-    //         url: url,
-    //         success: function (resp) {
-    //             destination.empty(); 
-    //             $.each(resp.medias, function (i, data) {
-    //                 var html = '<div class="col-lg-2 col-md-3 col-4"><img src="'+ data.url +'" class="img-fluid media-selectable"></div>';
-    //                 destination.append(html);
-    //             });
-    //         }
-    //     })
-    // }
-
-
-
     
 
 </script>

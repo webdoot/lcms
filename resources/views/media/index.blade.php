@@ -59,56 +59,66 @@
 
 </div>
 
-
-
-
 @endsection
 
 @section('footer')
 <div id="media_details_model" class="modal fade" tabindex="-1">
 	<div class="modal-dialog modal-xl">
+		<form id="media_details_form" data-id="">	
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">File details</h5>
+				<h5 class="modal-title">Media details</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 			</div>
 
 			<div class="modal-body py-0 px-2">
-				<div class="row">
-					<div class="col-lg-7 border p-3">
-						Edit window
+				<div class="row align-items-center">
+					<div class="col-lg-8 text-center pt-2">
+						<img src="" style="max-width: 730px; max-height: 390px">
+						<p class="fw-semibold"></p>
 					</div>
 
-					<div class="col-lg-5 border bg-light p-3">
+					<div class="col-lg-4 border-start bg-light p-3">
 						<div class="row">
 							<div class="col-md-5 mb-3">
-								<label class="form-label">Width (px)</label>
-								<input type="number" class="form-control" max="1600" placeholder="px">
+								<label class="form-label d-block mb-0">Width (px) <code  class="float-end">width</code></label>
+								<input type="number" class="form-control py-1 px-2" name="width" max="1920" placeholder="max:1920px">
 							</div>
 							<div class="col-md-5 ms-auto mb-3">
-								<label class="form-label">Height (px)</label>
-								<input type="number" class="form-control" max="900" placeholder="px">
+								<label class="form-label d-block mb-0">Height (px) <code  class="float-end">height</code></label>
+								<input type="number" class="form-control py-1 px-2" name="height" max="1080" placeholder="max:1080px">
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col mb-3">
-								<label class="form-label">Alt</label>
-								<input type="text" class="form-control" placeholder="Alt value">
+								<label class="form-label d-block mb-0">Url  <code  class="float-end">url</code> </label>
+
+								<div class="input-group">
+									<input type="text" class="form-control py-1 px-2" name="url" placeholder="Url" readonly>
+									<button type="button" class="btn btn-light btn-icon" onclick="textToClipboard(this.parentNode.querySelector('[name=url]'))"> <i class="icon icon-copy2"></i> </button>
+								</div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col mb-3">
-								<label class="form-label">Title</label>
-								<input type="text" class="form-control" placeholder="Title value">
+								<label class="form-label d-block mb-0">Alt <code  class="float-end">alt</code> </label>
+								<input type="text" class="form-control py-1 px-2" name="alt" placeholder="Alt value">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col mb-3">
+								<label class="form-label d-block mb-0">File Name <code  class="float-end">name</code> </label>
+								<input type="text" class="form-control py-1 px-2" name="name" placeholder="Name">
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col">
-								<label class="form-label">Description</label>
-								<textarea rows="2" class="form-control" placeholder="Description..."></textarea>
+								<label class="form-label d-block mb-0">Description <code  class="float-end">description</code> </label>
+								<textarea rows="2" class="form-control py-1 px-2" name="description" placeholder="Description..."></textarea>
 							</div>
 						</div>
 						
@@ -118,38 +128,21 @@
 			</div>
 
 			<div class="modal-footer">
+				@csrf @method('put')
+				<input type="hidden" name="action" value="media_details">
 				<button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Update <i class="ph-paper-plane-tilt ms-2"></i></button>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div id="media_edit_model" class="modal fade" tabindex="-1">
-	<div class="modal-dialog modal-md">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Image editor</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-			</div>
-
-			<div class="modal-body py-0 px-2">
-				
-				<div id="editor_container"></div>
-
-			</div>			
-		</div>
+		</form>
 	</div>
 </div>
 @endsection
 
 @push('footer')
-// Image editor plugin
-<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-image-editor.min.js') }}"></script>
-<script src="{{ asset('vendor/lcms/js/image-editor/filerobot-config.js') }}"></script>
-
 <script>
 
+	// file uploader
 	$("#dropzone").dropzone({ 
 		url: "{{route('lcms_media.store')}}",
 		maxFiles: 10,
@@ -166,42 +159,110 @@
         }
 	});
 
+	// media details model
 	const mediaDetailsModel = document.getElementById('media_details_model')
+	const modalTitle = mediaDetailsModel.querySelector('.modal-title')
+	let mediaUrl;
 	mediaDetailsModel.addEventListener('show.bs.modal', event => {
 	  	// Button that triggered the modal
 	  	const button = event.relatedTarget
-	  	// Extract info from data-bs-* attributes
+	  	// Extract info from data-id attributes
+	  	// const recipient = button.getAttribute('data-id')
 	  	const recipient = button.getAttribute('data-id')
 
-	  	var url = '{{ route('lcms_media.edit', [':id']) }}';
-        url = url.replace(':id', recipient);
-	  	$.ajax({
+	  	let url = '{{ route('lcms_media.edit', [':id']) }}';
+        mediaUrl = url.replace(':id', recipient);
+        getMedia(mediaUrl);
+
+	  	// at model hide, remove values
+        mediaDetailsModel.addEventListener('hide.bs.modal', event => {
+        	mediaDetailsModel.querySelector('.modal-title').innerHTML = 'Media details'
+           	mediaDetailsModel.querySelector('img').src = ''
+           	mediaDetailsModel.querySelector('img').removeAttribute('width')
+           	mediaDetailsModel.querySelector('img').removeAttribute('height')
+           	mediaDetailsModel.querySelector('img').alt = ''
+        	mediaDetailsModel.querySelector('p').textContent = ''
+        	mediaDetailsModel.querySelector('[name=width]').value = ''
+        	mediaDetailsModel.querySelector('[name=height]').value = ''
+        	mediaDetailsModel.querySelector('[name=url]').value = ''
+        	mediaDetailsModel.querySelector('[name=alt]').value = ''
+        	mediaDetailsModel.querySelector('[name=name]').value = ''
+        	mediaDetailsModel.querySelector('[name=description]').value = ''
+        })
+	})
+
+	// get media
+	function getMedia(url) {
+		$.ajax({
             dataType: 'json',
             url: url,
             type:'GET',
             success: function (resp) {
-
-            	console.log(resp);
-
-                // section_output.empty();
-                // $.each(resp, function (i, data) {
-                //     section_output.append($('<option>', {
-                //         value: data.id,
-                //         text: data.name
-                //     }));
-                // });
+            	mediaDetailsModel.querySelector('form').setAttribute('data-id', resp.id)
+            	mediaDetailsModel.querySelector('.modal-title').innerHTML = 'Media details &nbsp; <code class="fw-semibold">'+ resp.code +'</code>'
+            	mediaDetailsModel.querySelector('img').src = resp.url
+            	if (resp.width!=null) {
+            		if (resp.width > 730) {
+            			mediaDetailsModel.querySelector('img').width = 730
+            		}
+            		else {
+            			mediaDetailsModel.querySelector('img').width = resp.width
+            		}
+            	}
+            	
+            	if (resp.height!=null) {
+            		if (resp.height > 390) {
+            			mediaDetailsModel.querySelector('img').height = 390
+            		}
+            		else {
+            			mediaDetailsModel.querySelector('img').height = resp.height
+            		}            		
+            	}            	
+            	mediaDetailsModel.querySelector('img').alt = resp.alt
+            	mediaDetailsModel.querySelector('p').textContent = resp.name
+            	mediaDetailsModel.querySelector('[name=width]').value = resp.width
+            	mediaDetailsModel.querySelector('[name=height]').value = resp.height
+            	mediaDetailsModel.querySelector('[name=url]').value = resp.url
+            	mediaDetailsModel.querySelector('[name=alt]').value = resp.alt
+            	mediaDetailsModel.querySelector('[name=name]').value = resp.name
+            	mediaDetailsModel.querySelector('[name=description]').value = resp.description
             }
         })
-	  
+	}
 
-	  	const modalTitle = mediaDetailsModel.querySelector('.modal-title')
-	  	const modalBodyInput = mediaDetailsModel.querySelector('.modal-body input')
+	// copy to clipboard
+	function textToClipboard(inputBox){		
+	  	inputBox.select()	// select the text field
+	  	inputBox.setSelectionRange(0, 99999)	// For mobile devices
+	   	// copy the text inside the text field
+	  	navigator.clipboard.writeText(inputBox.value);
+	}
 
-	  	modalTitle.textContent = `New message to ${recipient}`
-	  	modalBodyInput.value = recipient
+	// submit media details form
+	$('#media_details_form').submit(function(e){
+		e.preventDefault();
+		var url = '{{ route('lcms_media.update', [':id']) }}';
+        url = url.replace(':id', this.getAttribute('data-id'));
+	  	$.ajax({
+            url: url,
+            type:'POST',
+            cache:false,
+            processData:false,
+            dataType:'json',
+            contentType:false,
+            data:new FormData(this),
+            success: function (resp) {            	
+        		new Noty({
+		            text: resp.success,
+		            type: 'success',
+		            theme: 'limitless',
+		            timeout: 2500
+		        }).show();
+            	
+            	getMedia(mediaUrl);
+            }
+        })
 	})
-
-
 	
 	
 
