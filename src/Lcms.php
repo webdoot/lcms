@@ -86,6 +86,13 @@ class Lcms
         return $model->owner_id == Auth::id();
     }
 
+    // Is user in this app
+    public static function isUser()
+    {
+        // Draft code
+        return true;
+    }
+
     // Return user information by id
     public static function user(int $id)
     {        

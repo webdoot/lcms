@@ -10,12 +10,13 @@
 namespace Webdoot\Lcms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Webdoot\Lcms\Lcms;
 
-class ArticleUpdateRequest extends FormRequest
+class PostCreateRequest extends FormRequest
 {
     public function authorize()
     {
-        return true;
+        return Lcms::isUser();
     }
 
     public function rules()
@@ -23,9 +24,8 @@ class ArticleUpdateRequest extends FormRequest
         return [
             'title'        => 'required|string',    
             'sub_title'    => 'nullable|string',
-            'label'        => 'nullable|string',
             'content'      => 'nullable|string',    
-            'sub_content'  => 'nullable|string',
+            'category_id'  => 'nullable|numeric',
 
             // metas
             "meta_keys"     => "sometimes|required|array",

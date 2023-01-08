@@ -1,5 +1,5 @@
 @extends('lcms::layout')
-@section('page_title', 'Slider')
+@section('page_title', 'Gallery')
 
 @push('head')
 <style>
@@ -18,20 +18,20 @@
 
 @section('content')
 
-<form action="{{route('lcms_slider.update', $slide->id)}}" method="POST">
+<form action="{{route('lcms_gallery.update', $gallery->id)}}" method="POST">
 @csrf @method('put')
-<input type="hidden" name="action" value="slider">
+<input type="hidden" name="action" value="gallery">
 
 <div class="card">
     <div class="card-header d-flex align-items-center">
-        <h5 class="mb-0">Add Slider Items</h5>
+        <h5 class="mb-0">Add Gallery Items</h5>
     </div>
 
     <div class="card-body">
 		<div class="row mb-3">
-			<label class="col-md-1 col-form-label">Slider Title:</label>
+			<label class="col-md-1 col-form-label">Gallery Title:</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="title" value="{{$slide->title}}" placeholder="Title" required>
+				<input type="text" class="form-control" name="title" value="{{$gallery->title}}" placeholder="Title" required>
 				<code class="float-end">title</code>
 			</div>
 			<div class="col-md-3">
@@ -42,13 +42,13 @@
 	</div>
 </div>
 
-@if($slide->content_json)
-@foreach($slide->content_json as $s)
+@if(isset($gallery->content_json) && $gallery->content_json)
+@foreach($gallery->content_json as $g)
 <div class="row">
 	<div class="col-md-7 item-box">
 		<div class="card">
 			<div class="card-header d-flex flex-wrap pb-0"> 
-				<p class="fw-semibold item-title">Slide{{$s->name ? ': '. $s->name : ''}}</p> 
+				<p class="fw-semibold item-title">Gallery{{$g->name ? ': '. $g->name : ''}}</p> 
 				<div class="d-inline-flex ms-auto"> 
 					<a class="text-body" data-card-action="collapse"> <i class="icon-arrow-down12"></i> </a> 
 					<a class="text-body ms-2" data-card-action="remove"> <i class="icon-cross3"></i> </a> 
@@ -61,7 +61,7 @@
 					<div class="row mb-3"> 
 						<label class="col-md-2 col-form-label">Image (url):</label> 
 						<div class="col-md-10"> 
-							<input type="text" class="form-control" name="slides[{{$loop->index}}][image]" value="{{$s->image}}" placeholder="Image"> 
+							<input type="text" class="form-control" name="gallery[{{$loop->index}}][image]" value="{{$g->image}}" placeholder="Image"> 
 							<code class="float-end">image</code> 
 						</div> 
 					</div>
@@ -69,7 +69,7 @@
 					<div class="row mb-3"> 
 						<label class="col-md-2 col-form-label">Name:</label> 
 						<div class="col-md-10"> 
-							<input type="text" class="form-control" name="slides[{{$loop->index}}][name]" value="{{$s->name}}" placeholder="Name"> 
+							<input type="text" class="form-control" name="gallery[{{$loop->index}}][name]" value="{{$g->name}}" placeholder="Name"> 
 							<code class="float-end">name</code> 
 						</div> 
 					</div>		
@@ -77,16 +77,8 @@
 					<div class="row mb-3"> 
 						<label class="col-md-2 col-form-label">Description:</label> 
 						<div class="col-md-10"> 
-							<textarea rows="2" class="form-control" name="slides[{{$loop->index}}][description]" placeholder="Description...">{{$s->description}}</textarea> 
+							<textarea rows="2" class="form-control" name="gallery[{{$loop->index}}][description]" placeholder="Description...">{{$g->description}}</textarea> 
 							<code class="float-end">description</code>
-						</div> 
-					</div>
-					
-					<div class="row mb-3"> 
-						<label class="col-md-2 col-form-label">Link (url):</label> 
-						<div class="col-md-10"> 
-							<input type="text" class="form-control" name="slides[{{$loop->index}}][url]" value="{{$s->url}}" placeholder="Link url">
-							<code class="float-end">url</code> 
 						</div> 
 					</div>	
 			
@@ -118,8 +110,7 @@
 		html += '<div class="collapse show"> <div class="card-body">';
 		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Image (url):</label> <div class="col-md-10"> <input type="text" class="form-control" name="slides['+ i +'][image]" placeholder="Image"> <code class="float-end">image</code> </div> </div>';
 		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Name:</label> <div class="col-md-10"> <input type="text" class="form-control" name="slides['+ i +'][name]" placeholder="Name"> <code class="float-end">name</code> </div> </div>';		
-		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Description:</label> <div class="col-md-10"> <textarea rows="2" class="form-control" name="slides['+ i +'][description]" placeholder="Description..."></textarea> <code class="float-end">description</code> </div> </div>';
-		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Link (url):</label> <div class="col-md-10"> <input type="text" class="form-control" name="slides['+ i +'][url]" placeholder="Link url"> <code class="float-end">url</code> </div> </div>';	
+		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Description:</label> <div class="col-md-10"> <textarea rows="2" class="form-control" name="slides['+ i +'][description]" placeholder="Description..."></textarea> <code class="float-end">description</code> </div> </div>';	
 		html += '</div> </div>';	// .collapse .card-body
 		html += '</div>';  // .card
 		html += '</div>';  // .col-md-7

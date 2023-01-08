@@ -45,3 +45,9 @@
 .card-img-top {
   height: 200px !important;
 }
+
+/* Select2  */
+.select2-search--dropdown::after {
+  content: "\e98e";
+  font-family: icomoon;
+}

@@ -29,7 +29,7 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	Route::resource('/lcms_slider', 'SliderController');
 
 	// Gallery 
-	Route::resource('/lcms_gallery', 'GalleryController')->except([]);
+	Route::resource('/lcms_gallery', 'GalleryController');
 
 
 	// Setting  
