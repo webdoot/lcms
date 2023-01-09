@@ -74,12 +74,14 @@
                 <label class="form-label fw-semibold">Meta: </label>
                 <code class="float-end">meta</code>
                 <table class="table">
+                    @if(isset($article->meta) && count($article->meta))
                     @foreach($article->meta as $key => $val)
                     <tr>
                         <td>{{ $key }}</td>
                         <td>{{ $val }}</td>
                     </tr>
                     @endforeach
+                    @endif
                 </table>
             </div>
         </div>
