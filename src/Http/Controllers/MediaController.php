@@ -124,6 +124,9 @@ class MediaController extends Controller
     
     public function destroy($id)
     {
-        //
+        // if not App admin
+        if(!Lcms::isUser()) return back()->withErrors(['User is not authorised...']);
+        Media::destroy($id);
+        return response()->json(['success'=>'Media deleted...']);
     }
 }

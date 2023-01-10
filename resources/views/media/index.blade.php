@@ -2,7 +2,11 @@
 @section('page_title', 'Media')
 
 @push('head')
-
+<style type="text/css">
+	.noty_type__confirm {
+		border: 5px solid #999;
+	}
+</style>
 @endpush
 
 @section('content')
@@ -124,17 +128,17 @@
 						
 					</div>
 				</div>
-
 			</div>
 
-			<div class="modal-footer">
+			<div class="modal-footer justify-content-between">
 				@csrf @method('put')
 				<input type="hidden" name="action" value="media_details">
-				<button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Update <i class="ph-paper-plane-tilt ms-2"></i></button>
+				<a href="#" onclick="deleteMedia()" class="btn btn-sm btn-link bg-light text-danger">Delete</a>
+				<button type="submit" class="btn btn-sm btn-primary">Update <i class="ph-paper-plane-tilt ms-2"></i></button>
 			</div>
 		</div>
 		</form>
+
 	</div>
 </div>
 @endsection
@@ -162,18 +166,21 @@
 	// media details model
 	const mediaDetailsModel = document.getElementById('media_details_model')
 	const modalTitle = mediaDetailsModel.querySelector('.modal-title')
+	let mediaId;
 	let mediaUrl;
+	let delMediaForm;
 	mediaDetailsModel.addEventListener('show.bs.modal', event => {
 	  	// Button that triggered the modal
 	  	const button = event.relatedTarget
 	  	// Extract info from data-id attributes
 	  	// const recipient = button.getAttribute('data-id')
 	  	const recipient = button.getAttribute('data-id')
+	  	mediaId = recipient;
 
 	  	let url = '{{ route('lcms_media.edit', [':id']) }}';
         mediaUrl = url.replace(':id', recipient);
         getMedia(mediaUrl);
-
+        
 	  	// at model hide, remove values
         mediaDetailsModel.addEventListener('hide.bs.modal', event => {
         	mediaDetailsModel.querySelector('.modal-title').innerHTML = 'Media details'
@@ -258,13 +265,54 @@
 		            theme: 'limitless',
 		            timeout: 2500
 		        }).show();
-            	
+            	// refresh media
             	getMedia(mediaUrl);
             }
         })
 	})
 	
-	
+	function deleteMedia(){		
+        var notyConfirm = new Noty({
+            text: '<h6 class="text-primary my-3">Please confirm your action</h6><p> Content will remove permanently.</p><p> Are you sure? </p>',
+            timeout: false,
+            modal: true,
+            layout: 'center',
+            closeWith: 'button',
+            type: 'confirm',
+            buttons: [
+                Noty.button('Cancel', 'btn btn-link', function () {
+                    notyConfirm.close();
+                }),
+
+                Noty.button('Ok', 'btn btn-sm btn-outline-danger ms-1', function () {
+
+                        notyConfirm.close();
+                        // create delete request
+                        var url = '{{ route('lcms_media.destroy', [':id']) }}';
+        				url = url.replace(':id', mediaId);
+                        $.ajax({
+				            url: url,
+				            type:'DELETE',
+				            success: function (resp) {  
+				            	// message
+						        new Noty({
+						            text: resp.success,
+						            type: 'success',
+						            theme: 'limitless',
+						            timeout: 2500
+						        }).show();
+
+						        // reload
+						        setTimeout(function() {
+								    location.reload();
+								}, 1000);
+				            }
+				        })
+                    }
+                )
+            ]
+        }).show();	   
+	}
 
 </script>
 @endpush

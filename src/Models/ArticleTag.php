@@ -18,5 +18,7 @@ class ArticleTag extends Model
 
     protected $table = 'lcms_article_tags';
 
-    protected $fillable = [  ];
+    public $timestamps = false;
+
+    protected $fillable = ['article_id', 'tag_id'];
 }

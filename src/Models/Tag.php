@@ -20,5 +20,11 @@ class Tag extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [  ];
+    protected $fillable = ['name', 'description'];
+
+    // relation
+    public function articles()
+    {
+        return $this->belongsToMany(Articles::class, 'lcms_article_tags', 'tag_id', 'article_id');
+    }
 }

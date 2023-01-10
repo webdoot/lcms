@@ -14,7 +14,7 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	Route::get('/dashboard', 'DashboardController@dashboard')->name('lcms_dashboard');
 
 	// Media 
-	Route::resource('/lcms_media', 'MediaController')->except(['show']);
+	Route::resource('/lcms_media', 'MediaController')->except(['create', 'show']);
 
 	// Artcle 
 	Route::resource('/lcms_article', 'ArticleController');
@@ -22,15 +22,20 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	// Menu 
 	Route::resource('/lcms_menu', 'MenuController');
 
-	// Post 
-	Route::resource('/lcms_post', 'PostController');
-
 	// Slider 
 	Route::resource('/lcms_slider', 'SliderController');
 
 	// Gallery 
 	Route::resource('/lcms_gallery', 'GalleryController');
 
+	// Post 
+	Route::resource('/lcms_post', 'PostController');
+
+	// Category 
+	Route::resource('/lcms_category', 'CategoryController');
+
+	// Tags 
+	Route::resource('/lcms_tag', 'TagController');
 
 	// Setting  
 	Route::get('/lcms_setting', 'SettingController@index')->name('lcms_setting.index'); 

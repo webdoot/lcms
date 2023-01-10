@@ -22,10 +22,6 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        // dd(array_key_exists(2, config('lcms.users')));
-        // dd(Lcms::get('m_6', '1', 'items'));
-        // dd(json_encode([['name'=>'Vikram', 'age'=>38], ['name'=>'Amit', 'age'=>30]]));
-
         $d['articles'] = Article::where('type', 'article')->latest()->get();
         return view('lcms::article.index', $d);
     }

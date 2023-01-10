@@ -31,7 +31,7 @@ class CreateLcmsCategoriesTable extends Migration
         echo 'seeding category...', PHP_EOL;
         DB::table('lcms_categories')->insert([   
             [         
-                'name'        => 'Uncategorised'       ,
+                'name'        => 'Uncategorised (default)' ,
                 'description' => 'Not in any category' , 
             ], 
         ]);

@@ -21,7 +21,11 @@ class CreateLcmsArticleTagsTable extends Migration
     public function up()
     {
         Schema::create('lcms_article_tags', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('tag_id');
+
+            $table->foreign('article_id')->references('id')->on('lcms_articles');
+            $table->foreign('tag_id')->references('id')->on('lcms_tags');
         });
     }
 
