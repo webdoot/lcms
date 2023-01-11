@@ -86,6 +86,24 @@
             </div>
         </div>
 
+        <div class="row border-bottom mb-3">
+            <div class="col pb-2">
+                @if($article->category)
+                    <span class="fw-semibold">Category:</span> {{ $article->category->name }} <br>
+                @endif
+                @if(count($article->tags))
+                    <span class="fw-semibold fst-italic">Tags:</span> 
+                    @foreach($article->tags as $t)
+                        @if(!$loop->last)
+                            {{$t->name}},
+                        @else
+                            {{$t->name}}
+                        @endif
+                    @endforeach                                        
+                @endif                 
+            </div>
+        </div>
+
     </div>
            
     

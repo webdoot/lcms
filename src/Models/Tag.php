@@ -11,6 +11,7 @@ namespace Webdoot\Lcms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Webdoot\Lcms\Models\Article;
 
 class Tag extends Model
 {
@@ -25,6 +26,6 @@ class Tag extends Model
     // relation
     public function articles()
     {
-        return $this->belongsToMany(Articles::class, 'lcms_article_tags', 'tag_id', 'article_id');
+        return $this->belongsToMany(Article::class, 'lcms_article_tags', 'tag_id', 'article_id');
     }
 }

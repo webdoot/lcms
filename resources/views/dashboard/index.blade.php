@@ -8,107 +8,123 @@
 
 <div class="row">
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-images3 icon-2x"></i>
+        <a href="{{route('lcms_media.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-images3 icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $media }}</h4>
-                    <span class="text-muted fw-semibold">Media</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $media }}</h4>
+                        <span class="text-primary fw-bold">Media</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-file-text2 icon-2x"></i>
+        <a href="{{route('lcms_article.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-file-text2 icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $article }}</h4>
-                    <span class="text-muted fw-semibold">Article</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $article }}</h4>
+                        <span class="text-primary fw-semibold">Article</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-list icon-2x"></i>
+        <a href="{{route('lcms_menu.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-list icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $menu }}</h4>
-                    <span class="text-muted fw-semibold">Menu</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $menu }}</h4>
+                        <span class="text-primary fw-semibold">Menu</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-grid5 icon-2x"></i>
+        <a href="{{route('lcms_slider.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-grid5 icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $slider }}</h4>
-                    <span class="text-muted fw-semibold">Slider</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $slider }}</h4>
+                        <span class="text-primary fw-semibold">Slider</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-gallery icon-2x"></i>
+        <a href="{{route('lcms_gallery.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-gallery icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $gallery }}</h4>
-                    <span class="text-muted fw-semibold">Gallery</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $gallery }}</h4>
+                        <span class="text-primary fw-semibold">Gallery</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-stack2 icon-2x"></i>
+        <a href="{{route('lcms_post.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-stack2 icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $post }}</h4>
-                    <span class="text-muted fw-semibold">Post</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $post }}</h4>
+                        <span class="text-primary fw-semibold">Post</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-bookmark icon-2x"></i>
+        <a href="{{route('lcms_category.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-bookmark icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $category }}</h4>
-                    <span class="text-muted fw-semibold">Category</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $category }}</h4>
+                        <span class="text-primary fw-semibold">Category</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-body">
-            <div class="d-flex align-items-center">
-                <i class="icon-books icon-2x"></i>
+        <a href="{{route('lcms_tag.index')}}" class="text-muted">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <i class="icon-books icon-2x"></i>
 
-                <div class="flex-fill text-end">
-                    <h4 class="mb-0">{{ $tag }}</h4>
-                    <span class="text-muted fw-semibold">Tags</span>
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">{{ $tag }}</h4>
+                        <span class="text-primary fw-semibold">Tags</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>

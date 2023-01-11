@@ -24,8 +24,8 @@ class CreateLcmsArticleTagsTable extends Migration
             $table->unsignedBigInteger('article_id');
             $table->unsignedBigInteger('tag_id');
 
-            $table->foreign('article_id')->references('id')->on('lcms_articles');
-            $table->foreign('tag_id')->references('id')->on('lcms_tags');
+            $table->foreign('article_id')->references('id')->on('lcms_articles')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('lcms_tags')->onDelete('cascade');
         });
     }
 

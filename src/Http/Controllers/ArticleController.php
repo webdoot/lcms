@@ -15,6 +15,7 @@ use Webdoot\Lcms\Http\Requests\ArticleCreateRequest;
 use Webdoot\Lcms\Http\Requests\ArticleUpdateRequest;
 use Webdoot\Lcms\Models\Article;
 use Webdoot\Lcms\Models\Media;
+use Webdoot\Lcms\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Webdoot\Lcms\Lcms;
 
@@ -32,7 +33,8 @@ class ArticleController extends Controller
         // if not App admin
         if(!Lcms::isAdmin()) return back()->withErrors(['User is not authorised...']); 
 
-        $d['medias'] = Media::latest()->get();       
+        $d['medias'] = Media::latest()->get();
+        $d['tags'] = Tag::get(); 
         return view('lcms::article.create', $d);
     }
 
@@ -43,12 +45,12 @@ class ArticleController extends Controller
         if(!Lcms::isAdmin()) return back()->withErrors(['User is not authorised...']);
 
         // Article data
-        $article =  $req->only(['title', 'sub_title', 'label', 'content', 'sub_content', 'media']);
+        $data =  $req->only(['title', 'sub_title', 'label', 'content', 'sub_content', 'media']);
 
         // ----- mandatory fields ------
-        $article['category_id'] = 1;
-        $article['owner_id'] = Auth::id();
-        $article['type'] = 'article';
+        $data['category_id'] = 1;
+        $data['owner_id'] = Auth::id();
+        $data['type'] = 'article';
         // ---- end mandatory fields ----
 
         // Meta
@@ -58,13 +60,16 @@ class ArticleController extends Controller
                     $meta[$value] = $req->meta_vals[$key] ?: '';  
                 }
             }                
-        $article['meta'] = $meta ;
+            $data['meta'] = $meta ;
         }
         
-        $article['published_at'] = now();
+        $data['published_at'] = now();
 
         // create article
-        $article = Article::create($article);
+        $article = Article::create($data);
+
+        // update relation
+        $article->tags()->attach($req->tags);
 
         // update code
         $article->code = 'a_'. $article->id ;
@@ -84,7 +89,8 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $d['article'] = Article::find($id);
-        $d['medias'] = Media::latest()->get();       
+        $d['medias'] = Media::latest()->get();  
+        $d['tags'] = Tag::get();     
         return view('lcms::article.edit', $d);
     }
 
@@ -92,7 +98,7 @@ class ArticleController extends Controller
     public function update(ArticleUpdateRequest $req, $id)
     {
         // Article data
-        $article =  $req->only(['title', 'sub_title', 'label', 'content', 'sub_content', 'media']);
+        $data =  $req->only(['title', 'sub_title', 'label', 'content', 'sub_content', 'media']);
 
         // Meta
         if (!empty($req->meta_keys[0])) {
@@ -101,11 +107,16 @@ class ArticleController extends Controller
                     $meta[$value] = $req->meta_vals[$key] ?: '';  
                 }
             }                
-        $article['meta'] = $meta ;
+            $data['meta'] = $meta ;
         }
-        
+
         // update
-        Article::find($id)->update($article);
+        $article = Article::find($id);
+        $article->update($data);
+
+        // update relation
+        $article->tags()->detach();
+        $article->tags()->attach($req->tags);
 
         return back()->with('flash_success', 'Article updated.');
     }

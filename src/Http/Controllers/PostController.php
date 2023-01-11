@@ -16,6 +16,7 @@ use Webdoot\Lcms\Http\Requests\PostUpdateRequest;
 use Webdoot\Lcms\Models\Article;
 use Webdoot\Lcms\Models\Media;
 use Webdoot\Lcms\Models\Category;
+use Webdoot\Lcms\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Webdoot\Lcms\Lcms;
 
@@ -35,12 +36,13 @@ class PostController extends Controller
 
         $d['medias'] = Media::latest()->get();       
         $d['categories'] = Category::get();       
+        $d['tags'] = Tag::get();       
         return view('lcms::post.create', $d);
     }
 
     
     public function store(PostCreateRequest $req)
-    {   
+    {
         // if not App user
         if(!Lcms::isUser()) return back()->withErrors(['User is not authorised...']); 
 
@@ -67,6 +69,9 @@ class PostController extends Controller
         // create post
         $article = Article::create($data);
 
+        // update relation
+        $article->tags()->attach($req->tags);
+
         // update code
         $article->code = 'p_'. $article->id ;
         $article->save();
@@ -86,6 +91,7 @@ class PostController extends Controller
     {
         $d['post'] = Article::find($id);
         $d['categories'] = Category::get();
+        $d['tags'] = Tag::get();
         $d['medias'] = Media::latest()->get();       
         return view('lcms::post.edit', $d);
     }
@@ -107,7 +113,12 @@ class PostController extends Controller
         }
         
         // update
-        Article::find($id)->update($data);
+        $article = Article::find($id);
+        $article->update($data);
+
+        // update relation
+        $article->tags()->detach();
+        $article->tags()->attach($req->tags);
 
         return back()->with('flash_success', 'Article updated.');
     }
@@ -118,7 +129,9 @@ class PostController extends Controller
         // if not App admin
         if(!Lcms::isAdmin()) return back()->withErrors(['User is not authorised...']);
 
-        Article::destroy($id);
+        $article = Article::find($id);
+        $article->tags()->detach();
+        $article->delete();
 
         return back()->with('flash_success', 'Article deleted.');
     }

@@ -26,6 +26,10 @@ class ArticleUpdateRequest extends FormRequest
             'label'        => 'nullable|string',
             'content'      => 'nullable|string',    
             'sub_content'  => 'nullable|string',
+            
+            // tags
+            "tags"         => "sometimes|required|array",
+            "tags.*"       => "sometimes|required|numeric",
 
             // metas
             "meta_keys"     => "sometimes|required|array",

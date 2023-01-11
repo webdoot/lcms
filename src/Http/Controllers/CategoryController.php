@@ -50,7 +50,7 @@ class CategoryController extends Controller
         // create category
         $category = Category::create($data);
 
-        return redirect()->route('lcms_category.edit', $category->id)->with('flash_success', 'Category created.');        
+        return back()->with('flash_success', 'Category created.');        
     }
 
     

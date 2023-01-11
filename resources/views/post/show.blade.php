@@ -37,7 +37,7 @@
                 <code class="float-end">content</code>
                 {!! $post->content !!}
             </div>
-        </div>
+        </div>        
 
         <div class="row border-bottom mb-3">
             <div class="col">
@@ -71,10 +71,20 @@
         </div>
 
         <div class="row border-bottom mb-3">
-            <div class="col">
-                <label class="form-label fw-semibold">Category: </label>
-                <code class="float-end">category</code>
-                <p>{{ $post->category->name }}</p>
+            <div class="col pb-2">
+                @if($post->category)
+                    <span class="fw-semibold">Category:</span> {{ $post->category->name }} <br>
+                @endif
+                @if(count($post->tags))
+                    <span class="fw-semibold fst-italic">Tags:</span> 
+                    @foreach($post->tags as $t)
+                        @if(!$loop->last)
+                            {{$t->name}},
+                        @else
+                            {{$t->name}}
+                        @endif
+                    @endforeach                                        
+                @endif                 
             </div>
         </div>
 

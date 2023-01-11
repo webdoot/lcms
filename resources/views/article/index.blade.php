@@ -19,8 +19,9 @@
 			<thead>
 				<tr>
 					<th width="80">#</th>
-					<th width="25%">Title</th>
+					<th width="20%">Title</th>
 					<th>Content</th>
+					<th>Tags</th>
 					<th>Images</th>
 					<th>Code</th>
 					<th>Action</th>
@@ -40,6 +41,19 @@
 					<td>
 						<span class="d-block">{!! $a->content_dsp !!}</span>
 						<span class="fst-italic text-muted d-block">{!! $a->sub_content_dsp !!}</span>
+					</td>
+					<td>
+						@if(count($a->tags))
+							<span class="d-block fst-italic">
+							@foreach($a->tags as $t)
+								@if(!$loop->last)
+									{{$t->name}},
+								@else
+									{{$t->name}}
+								@endif
+							@endforeach
+							</span>						
+						@endif
 					</td>
 					<td>
 						@foreach($a->media as $m)

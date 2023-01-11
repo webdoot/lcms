@@ -50,7 +50,7 @@ class TagController extends Controller
         // create category
         $tag = Tag::create($data);
 
-        return redirect()->route('lcms_tag.edit', $tag->id)->with('flash_success', 'Tag created.');        
+        return back()->with('flash_success', 'Tag created.');        
     }
 
     
@@ -94,7 +94,9 @@ class TagController extends Controller
         // if not App admin
         if(!Lcms::isUser()) return back()->withErrors(['User is not authorised...']);
 
-        Tag::destroy($id);
+        $tag = Tag::find($id);
+        $tag->articles()->detach();
+        $tag->delete();
         
         return back()->with('flash_success', 'Tag deleted.');
         

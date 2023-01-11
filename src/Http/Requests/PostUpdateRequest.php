@@ -26,6 +26,10 @@ class PostUpdateRequest extends FormRequest
             'sub_title'    => 'nullable|string',
             'content'      => 'nullable|string',    
             'category_id'  => 'nullable|numeric',
+            
+            // tags
+            "tags"         => "sometimes|required|array",
+            "tags.*"       => "sometimes|required|numeric",
 
             // metas
             "meta_keys"     => "sometimes|required|array",

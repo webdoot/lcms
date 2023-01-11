@@ -11,7 +11,8 @@ namespace Webdoot\Lcms\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Webdoot\Lcms\Models\Category;
+use Webdoot\Lcms\Models\Category;
+use Webdoot\Lcms\Models\Tag;
 
 class Article extends Model
 {

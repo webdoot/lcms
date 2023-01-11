@@ -84,10 +84,21 @@
 		    <div class="card-body"> 
 		    	<div class="mb-3">
 					<label class="form-label fw-semibold">Category</label>
-					<code class="float-end">sub_title</code>
+					<a href="{{route('lcms_category.create')}}" class="fst-italic bg-light ms-2">Add new</a>
+					<code class="float-end">category</code>
 					<select name="category_id" class="form-select select" data-placeholder="Select a category...">
 						@foreach($categories as $c)
                         <option value="{{$c->id}}" {{$c->id==1 ? 'selected' : ''}}>{{$c->name}}</option>
+                        @endforeach
+                    </select>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Tags</label>
+					<code class="float-end">tags</code>
+					<a href="{{route('lcms_tag.create')}}" class="fst-italic bg-light ms-2">Add new</a>
+					<select name="tags[]" class="form-select select" multiple="multiple" data-placeholder="Select tags...">
+                        @foreach($tags as $t)
+                        <option value="{{$t->id}}">{{$t->name}}</option>
                         @endforeach
                     </select>
 				</div>

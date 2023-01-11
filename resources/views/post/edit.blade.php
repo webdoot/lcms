@@ -112,6 +112,16 @@
                         @endforeach
                     </select>
 				</div>
+				<div class="mb-3">
+					<label class="form-label">Tags</label>
+					<code class="float-end">tags</code>
+					<a href="{{route('lcms_tag.create')}}" class="fst-italic bg-light ms-2">Add new</a>
+					<select name="tags[]" class="form-select select" multiple="multiple" data-placeholder="Select tags...">
+                        @foreach($tags as $t)                        	
+                        <option value="{{$t->id}}" {{in_array($t->id, $post->tags->pluck('id')->toArray()) ? 'selected' : ''}}>{{$t->name}}</option>                        	
+                        @endforeach
+                    </select>
+				</div>
 			</div>
 		</div>
 
