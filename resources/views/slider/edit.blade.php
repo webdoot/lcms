@@ -24,7 +24,7 @@
 
 <div class="card">
     <div class="card-header d-flex align-items-center">
-        <h5 class="mb-0">Add Slider Items</h5>
+        <h5 class="mb-0">Edit Slider Items &nbsp; <code> {{$slide->code}} </code></h5>
     </div>
 
     <div class="card-body">

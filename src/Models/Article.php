@@ -87,7 +87,7 @@ class Article extends Model
             $userid_name = array_column($users, 'name', 'user_id');
 
             // Find name listed for current user 
-            return array_key_exists($this->owner_id, $userid_name) ? $userid_name[$id] : '' ;
+            return array_key_exists($this->owner_id, $userid_name) ? $userid_name[$this->owner_id] : '' ;
         }
         else {
             return '';

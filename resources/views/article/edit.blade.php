@@ -17,7 +17,7 @@
 	<div class="col-md-9">
 		<div class="card">
 			<div class="card-header d-flex align-items-center">
-		        <h5 class="mb-0"> Edit </h5>
+		        <h5 class="mb-0"> Edit &nbsp; <code> {{$article->code}} </code> </h5>
 
 		        <div class="d-inline-flex ms-auto">
 					<a class="text-body" data-card-action="collapse"> More fields

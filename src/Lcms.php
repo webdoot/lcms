@@ -25,19 +25,55 @@ class Lcms
     	{
             $id = substr($code, 2);
             $article = Article::find($id);
-            $article = $sub_code ? $article->$sub_code : $article ;
-            $article = ($sub_code && $arr_key!==null) ? $article[$arr_key] : $article ;
+            if ($article) {
+                $article = $sub_code ? $article->$sub_code : $article ;
+            }
+            if ($article) {
+                $article = ($sub_code && $arr_key!==null) ? $article[$arr_key] : $article ;
+            }           
     		return $article ;
     	}
 
         // Get Menu
+        if(substr($code, 0, 2) === 's_')
+        {
+            $id = substr($code, 2);
+            $article = Article::find($id);
+            if ($article) {
+                return $article->content_json;          
+            }            
+            return [];
+        }
+
+        // Get Slider
         if(substr($code, 0, 2) === 'm_')
         {
             $id = substr($code, 2);
-            $menu = Article::find($id)->content_json;
-            $menu = $sub_code!==null ? $menu[$sub_code] : $menu ;
-            $menu = ($sub_code!==null && $arr_key!==null) ? $menu->$arr_key : $menu ;
-            return $menu ;
+            $article = Article::find($id);
+            if ($article) {
+                $menu = $article->content_json;
+
+                if ($menu) {
+                    $menu = $sub_code!==null ? $menu[$sub_code] : $menu ;
+                }
+                if ($menu) {
+                    $menu = ($sub_code!==null && $arr_key!==null) ? $menu->$arr_key : $menu ;
+                }           
+                return $menu ;
+            }            
+            return [];
+        }
+
+        // Get Gallery
+        if(substr($code, 0, 2) === 'g_')
+        {
+            $id = substr($code, 2);
+            $article = Article::find($id);
+            if ($article) {
+                $items = $article->content_json;           
+                return $items ;
+            }            
+            return [];
         }
 
         // Get Media
@@ -45,7 +81,9 @@ class Lcms
         {
             $id = substr($code, 3);
             $media = Media::find($id);
-            $media = $sub_code ? $media->$sub_code : $media ;
+            if ($media) {
+                $media = $sub_code ? $media->$sub_code : $media ;
+            }            
             return $media ;
         }
 

@@ -24,7 +24,7 @@
 
 <div class="card">
     <div class="card-header d-flex align-items-center">
-        <h5 class="mb-0">Add Gallery Items</h5>
+        <h5 class="mb-0">Edit Gallery Items &nbsp; <code> {{$gallery->code}} </code> </h5>
     </div>
 
     <div class="card-body">
@@ -41,7 +41,6 @@
 		</div>					
 	</div>
 </div>
-
 @if(isset($gallery->content_json) && $gallery->content_json)
 @foreach($gallery->content_json as $g)
 <div class="row">
@@ -108,9 +107,9 @@
 		html += '<div class="card">';
 		html += '<div class="card-header d-flex flex-wrap pb-0"> <p class="fw-semibold item-title">Slide</p> <div class="d-inline-flex ms-auto"> <a class="text-body" data-card-action="collapse"> <i class="icon-arrow-down12"></i> </a> <a class="text-body ms-2" data-card-action="remove"> <i class="icon-cross3"></i> </a> </div> </div>';
 		html += '<div class="collapse show"> <div class="card-body">';
-		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Image (url):</label> <div class="col-md-10"> <input type="text" class="form-control" name="slides['+ i +'][image]" placeholder="Image"> <code class="float-end">image</code> </div> </div>';
-		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Name:</label> <div class="col-md-10"> <input type="text" class="form-control" name="slides['+ i +'][name]" placeholder="Name"> <code class="float-end">name</code> </div> </div>';		
-		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Description:</label> <div class="col-md-10"> <textarea rows="2" class="form-control" name="slides['+ i +'][description]" placeholder="Description..."></textarea> <code class="float-end">description</code> </div> </div>';	
+		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Image (url):</label> <div class="col-md-10"> <input type="text" class="form-control" name="gallery['+ i +'][image]" placeholder="Image"> <code class="float-end">image</code> </div> </div>';
+		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Name:</label> <div class="col-md-10"> <input type="text" class="form-control" name="gallery['+ i +'][name]" placeholder="Name"> <code class="float-end">name</code> </div> </div>';		
+		html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Description:</label> <div class="col-md-10"> <textarea rows="2" class="form-control" name="gallery['+ i +'][description]" placeholder="Description..."></textarea> <code class="float-end">description</code> </div> </div>';	
 		html += '</div> </div>';	// .collapse .card-body
 		html += '</div>';  // .card
 		html += '</div>';  // .col-md-7

@@ -84,7 +84,7 @@
 @push('footer')
 <script>
 	// Datatable setting defaults
-	$.extend( $.fn.dataTable.defaults, { columnDefs: [{ orderable: false, width: 100, targets: [ 4, 5 ] }] });
+	$.extend( $.fn.dataTable.defaults, { columnDefs: [{ orderable: false, width: 100, targets: [ 5 ] }] });
 
 	// Data table
 	$('.datatable').DataTable();
