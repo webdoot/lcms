@@ -27,6 +27,10 @@
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{route('home')}}" class="navbar-nav-link rounded" target="_blank">Visit website</a>
+            </li>
         </ul>
 
         <ul class="nav gap-sm-2 order-1 order-lg-2 ms-lg-auto">

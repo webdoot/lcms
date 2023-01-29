@@ -71,11 +71,16 @@
                 <li class="nav-item mb-1">
                     <a href="{{ route('lcms_tag.index') }}" class="nav-link {{ (Route::is('lcms_tag.*')) ? 'active' : '' }}"> <i class="icon-books"></i> <span>Tags</span> </a>
                 </li>
-
-                {{--Setting--}}  
+ 
                 @if(Lcms::isAdmin())
+                {{--Setting--}} 
                 <li class="nav-item mb-1">
                     <a href="{{ route('lcms_setting.index') }}" class="nav-link {{ (Route::is('lcms_setting.*')) ? 'active' : '' }}"> <i class="icon-cog"></i> <span>Settings</span> </a>
+                </li> 
+
+                {{--Backup--}} 
+                <li class="nav-item mb-1">
+                    <a href="{{ route('lcms_backup.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['lcms_backup.*']) ? 'active' : '' }}"> <i class="icon-database2"></i> <span>Backup</span> </a>
                 </li> 
                 @endif
 

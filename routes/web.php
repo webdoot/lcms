@@ -37,6 +37,9 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http
 	// Tags 
 	Route::resource('/lcms_tag', 'TagController');
 
+	// Backup
+	Route::resource('/lcms_backup', 'BackupController')->except(['update']);
+
 	// Setting  
 	Route::get('/lcms_setting', 'SettingController@index')->name('lcms_setting.index'); 
 	Route::put('/lcms_setting', 'SettingController@update')->name('lcms_setting.update');
