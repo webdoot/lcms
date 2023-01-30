@@ -28,8 +28,13 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{route('home')}}" class="navbar-nav-link rounded" target="_blank">Visit website</a>
+            <li class="nav-item ms-1">
+                <a href="{{route('home')}}" class="navbar-nav-link navbar-nav-link-icon rounded"  target="_blank">
+                    <div class="d-flex align-items-center mx-md-1">
+                        <i class="icon-sphere"></i>
+                        <span class="d-none d-md-inline-block ms-2">Visit website</span>
+                    </div>
+                </a>
             </li>
         </ul>
 
