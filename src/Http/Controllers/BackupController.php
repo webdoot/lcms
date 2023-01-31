@@ -41,7 +41,7 @@ class BackupController extends Controller
 
 
     /**
-     * Show backup page
+     * LIST backup page
      */
     public function index()
     {
@@ -63,7 +63,7 @@ class BackupController extends Controller
 
 
     /**
-     * Create backup
+     * CREATE backup
      */
     public function create(Request $req)
     { 
@@ -83,7 +83,7 @@ class BackupController extends Controller
 
 
     /**
-     * Upload backup
+     * UPLOAD backup
      */
     public function store(Request $req)
     {   
@@ -121,7 +121,7 @@ class BackupController extends Controller
 
 
     /**
-     * Download file
+     * DOWNLOAD file
      */
     public function edit(Request $req, $id)
     {
@@ -136,7 +136,7 @@ class BackupController extends Controller
 
 
     /**
-     * Restore backup
+     * RESTORE backup
      */
     public function show(Request $req, $id)
     {
@@ -198,7 +198,7 @@ class BackupController extends Controller
 
 
     /**
-     * Delete file
+     * DELETE file
      */
     public function destroy(Request $req, $id)
     {   
