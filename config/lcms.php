@@ -51,4 +51,6 @@ return [
                         'doc'   =>  ['doc', 'docx', 'xls'], 
                     ],
 
+    'admin_route' => 'lcms',
+
 ];

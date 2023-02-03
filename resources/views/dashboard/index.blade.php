@@ -126,21 +126,25 @@
             </div>
         </a>
     </div>
-
 </div>
 
 <div class="row">
     <div class="col">
-        <div class="card card-body">
-            <div class="d-flex align-items-center align-items-lg-start flex-column flex-lg-row">
-                <div class="bg-primary bg-opacity-10 text-primary lh-1 rounded-pill p-2 me-lg-3 mb-3 mb-lg-0">
+        <div class="card card-body pt-4 pb-5">
+            <div class="d-flex">
+                <div class="align-self-baseline bg-primary bg-opacity-10 text-primary rounded-pill p-2 me-3">
                     <i class="icon-help icon-2x"></i>
                 </div>
 
-                <div class="flex-fill text-center text-lg-start">
+                <div class="flex-fill">
                     <h4 class="mb-0">How to use?</h4>
-                    <span class="text-muted">Laravel Content Management System</span>
+                    <span class="text-muted"> Integration of content into template. </span>
                 </div>
+            </div>
+
+            <div class="mt-3">
+                <h5 class="mb-0">Article</h5>
+                <p class="text-muted"> <strong> Lcms::get('code') </strong> </p>
             </div>
         </div>
     </div>

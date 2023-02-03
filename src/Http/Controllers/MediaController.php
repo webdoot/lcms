@@ -26,7 +26,7 @@ class MediaController extends Controller
         ]);
 
         if ($req->type == 'photo') {
-            $d['medias'] = Media::whereIn('ext', config('lcms.media_types.photo'))->latest()->get();
+            $d['medias'] = Media::whereIn('ext', config('lcms.media_types.photo'))->orderBy('id', 'desc')->get();
         }
         elseif ($req->type == 'video') {
             $d['medias'] = Media::whereIn('ext', config('lcms.media_types.video'))->latest()->get();
@@ -38,7 +38,7 @@ class MediaController extends Controller
             $d['medias'] = Media::whereIn('ext', config('lcms.media_types.doc'))->latest()->get();
         }
         else {
-            $d['medias'] = Media::latest()->get();
+            $d['medias'] = Media::latest()->orderBy('id', 'desc')->get();
         }
 
         return view('lcms::media.index', $d);

@@ -23,6 +23,12 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        // $routeCollection = \Illuminate\Support\Facades\Route::getRoutes();
+        // $uri = collect($routeCollection)->pluck('uri');
+        // dd($uri[2]);
+        
+        
+
         $d['articles'] = Article::where('type', 'article')->latest()->get();
         return view('lcms::article.index', $d);
     }

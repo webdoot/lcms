@@ -7,70 +7,24 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">
-        <h5 class="mb-0"> Edit </h5>
-    </div>
-
     <div class="card-body">
-        <div class="row py-3 g-4">
-            <div class="col-lg-8">
-                <form method="post" action="{{route('lcms_setting.update')}}" enctype="multipart/form-data">
-                    @csrf @method('put')
+        <ul class="nav nav-tabs nav-tabs-highlight">
+            <li class="nav-item">
+                <a href="#tab-1" class="nav-link active" data-bs-toggle="tab"> <h6 class="mb-0"> Site </h6> </a>
+            </li>
+            <li class="nav-item">
+                <a href="#tab-2" class="nav-link" data-bs-toggle="tab"> <h6 class="mb-0"> Address </h6> </a>
+            </li>                   
+        </ul>
 
-                    <div class="row mb-3">
-                        <label class="col-lg-2 col-form-label">Title : <span class="text-danger">*</span> </label>
-                        <div class="col-lg-10">
-                            <input name="site_title" class="form-control" type="text" value="{{Lcms::get('site_title')}}" placeholder="Site title" required>
-                            <code class="float-end">site_title</code>
-                        </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label class="col-lg-2 col-form-label">Sub Title : </label>
-                        <div class="col-lg-10">
-                            <input name="site_sub_title" class="form-control" type="text" value="{{Lcms::get('site_sub_title')}}" placeholder="Site sub title">
-                            <code class="float-end">site_sub_title</code>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-lg-2 col-form-label">Logo : <span class="text-danger">*</span> </label>
-                        <div class="col-lg-10">
-                            <input name="site_logo" class="form-control" type="text" value="{{Lcms::get('site_logo')}}" placeholder="Site logo url" required>
-                            <code class="float-end">site_logo</code>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-lg-2 col-form-label">Logo2 : </label>
-                        <div class="col-lg-10">
-                            <input name="site_logo2" class="form-control" type="text" value="{{Lcms::get('site_logo2')}}" placeholder="Site logo2 url">
-                            <code class="float-end">site_logo2</code>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-lg-2 col-form-label">Favicon : <span class="text-danger">*</span> </label>
-                        <div class="col-lg-10">
-                            <input name="site_favicon" class="form-control" type="text" value="{{Lcms::get('site_favicon')}}" placeholder="Site favicon" required>
-                            <code class="float-end">site_favicon</code>
-                        </div>
-                    </div>
-
-                    <div>
-                        <input type="hidden" name="action" value="site">
-                        <button type="submit" class="btn btn-sm btn-primary float-end"> Update <i class="icon-paperplane ms-2"></i> </button>
-                    </div>
-
-                </form>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab-1">
+                @include('lcms::setting.index-inc.tab-1')
             </div>
 
-            <div class="col-lg-3 p-3 bg-light text-muted ms-auto me-auto">
-                <i class="icon-play4 mr-2"></i> Site front end setting variables.
-                <br> <br> 
-                <i class="icon-play4 mr-2"></i> Usage: Copy field corresponding <b>code</b>.
-                <br> <br>  
-                <i class="icon-play4 mr-2"></i> Display Blade file: <b>Lcms::get("code")</b>     
+            <div class="tab-pane fade" id="tab-2">
+                @include('lcms::setting.index-inc.tab-2')
             </div>
         </div>
 
@@ -84,4 +38,30 @@
 @endsection
 
 @push('footer')
+<script>
+    // add meta
+    var i = 100;
+    $('#addContact').click(function(e){
+        i++;         
+        var html = '';
+        html += '<div class="row p-3 bg-light mt-3">';
+        html += '<div class="col-md-11">';
+        html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Title : </label> <div class="col-md-10"> <input name="contact['+ i +'][title]" class="form-control" type="text" placeholder="Title" > </div> </div>';
+        html += '<div class="row mb-3"> <label class="col-md-2 col-form-label">Phone : </label> <div class="col-md-4"> <input name="contact['+ i +'][phone]" class="form-control" type="text" placeholder="Phone" > </div> <label class="col-md-2 col-form-label">Email : </label> <div class="col-md-4"> <input name="contact['+ i +'][email]" class="form-control" type="email" placeholder="Email"> </div> </div>';
+        html += '<div class="row"> <label class="col-md-2 col-form-label">Address : </label> <div class="col-md-10"> <textarea class="form-control" name="contact['+ i +'][address]" placeholder="Enter address here..."></textarea> </div> </div>';
+        html += '</div>';
+        html += '<div class="col-md-1 text-end"> <span class="icon-cross2 btn btn-icon btn-outline-danger rembtn"></span> </div>';
+        html += '</div>';
+
+        $(this).parents('form').find('.addrWrap').append(html);
+
+    });
+
+    // remove field
+    $('.addrWrap').on("click",".rembtn", function(e){ 
+        e.preventDefault(); 
+        $(this).parent('div').parent('div.row').remove();
+    });
+
+</script>
 @endpush

@@ -7,7 +7,7 @@
  |---------------------------------------------------
  */
 
-Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http\Controllers', 'prefix' => 'lcms'], function(){
+Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Webdoot\Lcms\Http\Controllers', 'prefix' => config('lcms.admin_route', 'lcms') ], function(){
 
 	// Dashboard 
 	Route::get('/', 'DashboardController@dashboardRedirect');

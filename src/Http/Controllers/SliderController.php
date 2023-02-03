@@ -35,8 +35,7 @@ class SliderController extends Controller
     public function store(SliderCreateRequest $req)
     {
         $data['title'] = $req->title;
-
-        $data['content'] = json_encode($req->slides);
+        $data['content'] = $req->slides ? json_encode($req->slides) : null;
 
         // ------ mandatory fields ------
         $data['category_id'] = 1;
@@ -70,7 +69,7 @@ class SliderController extends Controller
     public function update(SliderUpdateRequest $req, $id)
     {
         $data['title'] = $req->title;
-        $data['content'] = json_encode($req->slides);
+        $data['content'] = $req->slides ? json_encode($req->slides) : null;
         Article::find($id)->update($data);
 
         return back()->with('flash_success', 'Slider updated.');

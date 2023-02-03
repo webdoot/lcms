@@ -22,7 +22,7 @@ class SettingUpdateRequest extends FormRequest
 
     public function rules()
     {
-        return [
+        $site = [
             'site_title'        => 'required|string',
             'site_sub_title'    => 'nullable|string',
             'site_logo'         => 'required|string',
@@ -30,14 +30,21 @@ class SettingUpdateRequest extends FormRequest
             'site_favicon'      => 'required|string',
             'action'            => 'required|in:site',
         ];
-    }
 
-    public function attributes()
-    {
-        return  [
-            // 'org_name'                => 'Name',
-            // 'org_address'             => 'Address',            
+        $address = [
+            "contact"           => "sometimes|nullable|array",
+            "contact.*.title"   => "sometimes|nullable|string",
+            "contact.*.phone"   => "sometimes|nullable|string",
+            "contact.*.email"   => "sometimes|nullable|string",
+            "contact.*.address" => "sometimes|nullable|string",
+            'action'            => 'required|in:address',
         ];
+
+
+        switch ($this->action) {
+            case 'site' :  return $site ;  break;
+            case 'address':  return $address ; break;
+        };
     }
 
 }

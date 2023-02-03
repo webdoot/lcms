@@ -26,10 +26,8 @@ class Lcms
             $id = substr($code, 2);
             $article = Article::find($id);
             if ($article) {
-                $article = $sub_code ? $article->$sub_code : $article ;
-            }
-            if ($article) {
-                $article = ($sub_code && $arr_key!==null) ? $article[$arr_key] : $article ;
+                $article = $sub_code!==null ? $article->$sub_code : $article ;
+                $article = ($sub_code!==null && $arr_key!==null) ? $article[$arr_key] : $article ;
             }           
     		return $article ;
     	}
@@ -38,11 +36,13 @@ class Lcms
         if(substr($code, 0, 2) === 's_')
         {
             $id = substr($code, 2);
-            $article = Article::find($id);
-            if ($article) {
-                return $article->content_json;          
+            $article = Article::find($id); 
+            if ($article) { 
+                // return $article->content_json;          
+                $article = $sub_code!==null ? $article->content_json[$sub_code] : $article->content_json ;          
+                $article = ($sub_code!==null && $arr_key!==null) ? $article->$arr_key : $article ;          
             }            
-            return [];
+            return $article;
         }
 
         // Get Slider
@@ -87,9 +87,16 @@ class Lcms
             return $media ;
         }
 
-    	// Get Setting
+    	// Get Contact Setting
     	elseif(substr($code, 0, 5) == 'site_')
     	{
+            if ($code == 'site_contact') {
+                $contact = Setting::getJson($code);
+                if (count($contact) == 1) {
+                    return $contact[0];
+                }
+            }
+
     		return Setting::get($code) ;
     	}
     	

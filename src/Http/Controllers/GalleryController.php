@@ -36,7 +36,7 @@ class GalleryController extends Controller
     {
         $data['title'] = $req->title;
 
-        $data['content'] = json_encode($req->gallery);
+        $data['content'] = $req->gallery ? json_encode($req->gallery) : null ;
 
         // ------ mandatory fields ------
         $data['category_id'] = 1;
@@ -70,7 +70,7 @@ class GalleryController extends Controller
     public function update(GalleryUpdateRequest $req, $id)
     {
         $data['title'] = $req->title;
-        $data['content'] = json_encode($req->gallery);
+        $data['content'] = $req->gallery ? json_encode($req->gallery) : null ;
         Article::find($id)->update($data);
 
         return back()->with('flash_success', 'Gallery updated.');
